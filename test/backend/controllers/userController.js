@@ -1,4 +1,5 @@
 const uservalidation = require('../services/uservalidation');
+const userregdb = require('../services/database/db_uregistration')
 module.exports = {
    ValidateAndCreateUser: async function (user,callback) {
     if(uservalidation.ValidateName(user.firstname)){ 
@@ -20,7 +21,9 @@ module.exports = {
                     if(uservalidation.ValidateName(user.nlastname)){
                       
                       if(uservalidation.ValidateDate(user.ndob)){
-                        
+                        userregdb.createUser(user)
+                        callback("hello")
+
                       }
                     }
                   }
@@ -38,7 +41,7 @@ module.exports = {
         }
       }
     }
-    callback(false)
+   
       
   }
 };

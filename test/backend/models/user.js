@@ -1,94 +1,95 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const user = db.define('users',
+  const user = sequelize.define('users',
   {
   id:{
-      type:Sequelize.INTEGER,
+      type:DataTypes.INTEGER,
       allowNull:false,
-      autoIncrement:true
+      autoIncrement:true,
+      primaryKey:true
   }, 
   firstname:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   lastname:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   email:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   aadharNo:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   password:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   panNo:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   everified:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   pverified:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   averified:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   balance:{
-      type:Sequelize.INTEGER,
+      type:DataTypes.INTEGER,
       allowNull:false
   },
   refferal:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   refferedcode:{
-      type:Sequelize.STRING
+      type:DataTypes.STRING
   },
   dob:{
-      type:Sequelize.DATE,
+      type:DataTypes.DATE,
       allowNull:false
   },
   nfirstname:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   nlastname:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   ndob:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
       
   },
   accno:{
-      type:Sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull:false
   },
   createdAt:{
-      type:Sequelize.DATE
+      type:DataTypes.DATE
   },
   updatedAt:{
-      type:Sequelize.DATE
+      type:DataTypes.DATE
   },
   deletedAt:{
-    type:Sequelize.DATE
+    type:DataTypes.DATE
   },
   tokenlogin:{
-      type:Sequelize.BOOLEAN
+      type:DataTypes.BOOLEAN
   },
   }, { sequelize,
-    modelName: 'user'});
+    modelName: 'users'});
   user.associate = function(models) {
     // associations can be defined here
   };
