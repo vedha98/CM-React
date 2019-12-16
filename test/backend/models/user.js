@@ -1,15 +1,57 @@
 const Sequelize = require('sequelize');
 const db = require("../config/database");
-const user = db.define('data',
+const user = db.define('users',
 {
     
-name:{
+firstname:{
     type:Sequelize.STRING
 },
-desc:{
+lastname:{
     type:Sequelize.STRING
 },
-salary:{
+email:{
+    type:Sequelize.STRING
+},
+aadharNo:{
+    type:Sequelize.STRING
+},
+password:{
+    type:Sequelize.STRING
+},
+panNo:{
+    type:Sequelize.STRING
+},
+everified:{
+    type:Sequelize.STRING
+},
+pverified:{
+    type:Sequelize.STRING
+},
+averified:{
+    type:Sequelize.STRING
+},
+balance:{
+    type:Sequelize.INTEGER
+},
+refferal:{
+    type:Sequelize.STRING
+},
+refferedcode:{
+    type:Sequelize.STRING
+},
+dob:{
+    type:Sequelize.DATE
+},
+nfirstname:{
+    type:Sequelize.STRING
+},
+nlastname:{
+    type:Sequelize.STRING
+},
+ndob:{
+    type:Sequelize.STRING
+},
+accno:{
     type:Sequelize.STRING
 },
 createdAt:{
@@ -17,7 +59,10 @@ createdAt:{
 },
 updatedAt:{
     type:Sequelize.DATE
-}
+},
+tokenlogin:{
+    type:Sequelize.BOOLEAN
+},
 }
 )
 module.exports = user;
