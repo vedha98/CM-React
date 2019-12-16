@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../models/user');
-
+const userController = require('../controllers/userController');
 
 //get all users
 router.get('/',(req,res)=>{
@@ -11,7 +11,10 @@ router.get('/',(req,res)=>{
     })
 })
 router.post('/register',(req,res)=>{
-    const userdata = res.body;
-    res.json(userdata)
+   
+    const userdata = req.body;
+    userController.ValidateAndCreateUser(userdata).then(val=>{
+        res.json({msg:val})
+    });
 })
 module.exports = router
