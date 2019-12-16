@@ -10,6 +10,6 @@ router.get('/',(req,res)=>{
     })
 })
 router.post('/register',(req,res)=>{
-    console.log("/reg");
+    res.json(req.body)
 })
 module.exports = router
