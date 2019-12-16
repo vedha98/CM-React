@@ -13,12 +13,12 @@ router.get('/',(req,res)=>{
 router.post('/register',(req,res)=>{
    
     const userdata = req.body;
-    userController.ValidateAndCreateUser(userdata,(val)=>{
+    userController.ValidateAndCreateUser(userdata,(val,msg)=>{
         if(val){
-            res.json({"success":true,"msg":val})
+            res.json({"success":true,"msg":msg})
         }
         else{
-            res.json({"success":false,"msg":"invalid details"})
+            res.json({"success":false,"msg":msg})
         }
         
     })

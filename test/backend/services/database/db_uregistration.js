@@ -1,15 +1,28 @@
 const userdb = require('../../models').users;
+const generator = require('../../helpers/generator');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports={
-    createUser:async function(user){
+    createUser:function(user,callback){
         let {firstname,lastname,email,aadharNo,password,panNo,dob,nfirstname,nlastname,ndob}= user;
-        userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,nfirstname,nlastname,ndob,everified:false,pverified:false,averified:false,tokenlogin:false,balance:0,refferal:"qrqwrqwr",accno:"23131351515"}).then(
-            ()=>{
-                return true
-                
-            }
-        ).catch(err=>{
-            console.log(err)
-        })
+        raccno=generator.getaccno();
+        reffno = generator.getrefno();
+        
+        bcrypt.genSalt(saltRounds, function(err, salt) {
+            bcrypt.hash(password, salt, function(err, hash) {
+                password=hash
+                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,nfirstname,nlastname,ndob,everified:false,pverified:false,averified:false,tokenlogin:false,balance:0,refferal:reffno,accno:raccno}).then(
+                    ()=>{
+                        callback(true)
+                        
+                    }
+                ).catch(err=>{
+                    console.log(err)
+                })
+            });
+        });
+        
     },
     checkExist:function(user){
         return true
