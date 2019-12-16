@@ -1,7 +1,6 @@
 module.exports = {
-    Username: async function (name) {
+    Username: function (name) {
      //user validation
-   
      return true;
    }
  };

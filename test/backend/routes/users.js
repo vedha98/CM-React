@@ -13,8 +13,9 @@ router.get('/',(req,res)=>{
 router.post('/register',(req,res)=>{
    
     const userdata = req.body;
-    userController.ValidateAndCreateUser(userdata).then(val=>{
-        res.json({msg:val})
-    });
+    userController.ValidateAndCreateUser(userdata,(val)=>{
+        console.log(val)
+        res.json({"msg":val})
+    })
 })
 module.exports = router

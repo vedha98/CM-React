@@ -1,8 +1,9 @@
 const uservalidation = require('../services/uservalidation');
 module.exports = {
-   ValidateAndCreateUser: async function (user,ret) {
-    uservalidation.ValidateName(user.firstname).then(val=>{
+   ValidateAndCreateUser:  function (user,callback) {
+    uservalidation.ValidateName(user.firstname,(val)=>{
      
+      callback(val)
     })
   }
 };
