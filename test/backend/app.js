@@ -8,10 +8,13 @@ app.get("/",(req,res)=>{
 })
 //cors middleware
 app.use(cors());
+
 //bodyparser middleware
 app.use(bodyparser.json());
+
 //connect db
 const db = require('./config/database');
+
 //chec conn
 db.authenticate().then(console.log("true")).catch(err=>{console.log(err)});
 

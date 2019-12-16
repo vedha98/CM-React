@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user');
 
+
 //get all users
 router.get('/',(req,res)=>{
   
@@ -10,6 +11,7 @@ router.get('/',(req,res)=>{
     })
 })
 router.post('/register',(req,res)=>{
-    res.json(req.body)
+    const userdata = res.body;
+    res.json(userdata)
 })
 module.exports = router
