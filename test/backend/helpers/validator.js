@@ -1,6 +1,28 @@
 module.exports = {
     Username: function (name) {
      //user validation
-     return true;
+     return /^[A-Za-z\s]+$/.test(name) 
+   },
+   Email:function(mail){
+       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)
+   },
+   AADHAR:function(aad){
+       if(/^\d{12}$/.test(aad)){
+           return true
+       }else if(/^\d{16}$/.test(aad)){
+        return true
+       }else{
+           return false;
+       }
+   },
+   Password:function(pass){
+       return(/^[A-Za-z]\w{7,14}$/.test(pass))
+
+   },
+   PAN: function(pan){
+       return(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(pan))
+   },
+   DATE: function(date){
+       return(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(date))
    }
  };

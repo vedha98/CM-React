@@ -14,8 +14,13 @@ router.post('/register',(req,res)=>{
    
     const userdata = req.body;
     userController.ValidateAndCreateUser(userdata,(val)=>{
-        console.log(val)
-        res.json({"msg":val})
+        if(val){
+            res.json({"success":true,"msg":val})
+        }
+        else{
+            res.json({"success":false,"msg":"invalid details"})
+        }
+        
     })
 })
 module.exports = router
