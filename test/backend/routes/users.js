@@ -44,4 +44,14 @@ router.get('/validate/:key',(req,res)=>{
     })
 
 })
+router.get('/otpverify/:key',(req,res)=>{
+    userController.ValidateOTP(req.params.key,val=>{
+        if(val){
+            userController.PVerifyUser(val.userId).then(val=>{res.json({success:"true",msg:"user verified successfully"})})
+        }else{
+            res.json({msg:"wrong otp"})
+        }
+    })
+
+})
 module.exports = router

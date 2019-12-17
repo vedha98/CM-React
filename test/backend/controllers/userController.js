@@ -60,7 +60,13 @@ module.exports = {
   ValidateEKey:function(key,callback){
    verifydb.checkKey(key,val=>{callback(val)})
   },
+  ValidateOTP:function(key,callback){
+    verifydb.checkOTP(key,val=>{callback(val)})
+   },
   EVerifyUser:function(userid){
     return userregdb.Everify(userid).then(val=>{return true})
+  },
+  PVerifyUser:function(userid){
+    return userregdb.Pverify(userid).then(val=>{return true})
   }
 };

@@ -66,6 +66,9 @@ module.exports={
     },
     Everify:function(userid){
         return userdb.update({everified:true},{where:{id:userid}})
+    },
+    Pverify:function(userid){
+        return userdb.update({pverified:true},{where:{id:userid}})
     }
 
 }
