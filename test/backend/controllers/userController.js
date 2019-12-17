@@ -78,10 +78,10 @@ module.exports = {
       return false
     }
   },
-  getUserById:async function(id,callback){
+  getUserById:function(id,callback){
     var query={id}
-    return userregdb.findUserbyCustId(query,(user,msg)=>{
-      callback(user)
+    userregdb.findUserbyCustId(query,(user,msg)=>{
+      callback(user,"found user")
     })
   }
 };
