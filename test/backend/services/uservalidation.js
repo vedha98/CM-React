@@ -21,8 +21,13 @@ module.exports = {
                     if(validator.Username(user.nlastname)){
                       
                       if(validator.DATE(user.ndob)){
+                        if(validator.Phone(user.phone)){
+                          callback(true)
+                        }else{
+                          callback(false,"invalid phone number")
+                        }
                         
-                        callback(true)
+                       
                        
                       }else{
                         callback(false,"invalid ndob")

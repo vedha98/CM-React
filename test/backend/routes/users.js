@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../models/user');
 const userController = require('../controllers/userController');
 
 //get all users
 router.get('/',(req,res)=>{
   
-    user.findAll().then(users=>{
-     res.json({users:users})
-    })
+  
 })
 router.post('/register',(req,res)=>{
    
@@ -22,5 +19,19 @@ router.post('/register',(req,res)=>{
         }
         
     })
+})
+router.post('/login',(req,res)=>{
+    const userdata = req.body;
+    if(userdata.accno){
+        if(userdata.password){
+            userController.CheckPasswordAcc(userdata,(val,msg)=>{
+                res.json({success:val,msg})
+            })
+        }else{
+            res.json({success:false,msg:"no password"})
+        }
+    }else{
+        res.json({success:false,msg:"no account number"})
+    }
 })
 module.exports = router

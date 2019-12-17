@@ -32,16 +32,20 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false
   },
+  phone:{
+    type:DataTypes.STRING,
+    allowNull:false
+},
   everified:{
-      type:DataTypes.STRING,
+      type:DataTypes.BOOLEAN,
       allowNull:false
   },
   pverified:{
-      type:DataTypes.STRING,
+      type:DataTypes.BOOLEAN,
       allowNull:false
   },
   averified:{
-      type:DataTypes.STRING,
+      type:DataTypes.BOOLEAN,
       allowNull:false
   },
   balance:{
@@ -55,6 +59,10 @@ module.exports = (sequelize, DataTypes) => {
   refferedcode:{
       type:DataTypes.STRING
   },
+  everifycode:{
+    type:DataTypes.STRING,
+    allowNull:false
+},
   dob:{
       type:DataTypes.DATE,
       allowNull:false
@@ -68,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
   },
   ndob:{
-      type:DataTypes.STRING,
+      type:DataTypes.DATE,
       allowNull:false
       
   },

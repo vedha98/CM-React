@@ -31,16 +31,20 @@ module.exports = {
         type:Sequelize.STRING,
         allowNull:false
     },
-    everified:{
+    phone:{
         type:Sequelize.STRING,
+        allowNull:false
+    },
+    everified:{
+        type:Sequelize.BOOLEAN,
         allowNull:false
     },
     pverified:{
-        type:Sequelize.STRING,
+        type:Sequelize.BOOLEAN,
         allowNull:false
     },
     averified:{
-        type:Sequelize.STRING,
+        type:Sequelize.BOOLEAN,
         allowNull:false
     },
     balance:{
@@ -66,8 +70,12 @@ module.exports = {
         type:Sequelize.STRING,
         allowNull:false
     },
-    ndob:{
+    everifycode:{
         type:Sequelize.STRING,
+        allowNull:false
+    },
+    ndob:{
+        type:Sequelize.DATE,
         allowNull:false
         
     },
