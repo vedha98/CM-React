@@ -1,6 +1,7 @@
 const uservalidation = require('../services/uservalidation');
 const userregdb = require('../services/database/db_uregistration')
 const verifydb = require('../services/database/db_verification')
+const jwtservice = require('../services/jwtservice')
 const verify = require('../services/verification')
 module.exports = {
    ValidateAndCreateUser: async function (user,callback) {
@@ -68,5 +69,19 @@ module.exports = {
   },
   PVerifyUser:function(userid){
     return userregdb.Pverify(userid).then(val=>{return true})
+  },
+  checkToken:async function(token){
+    var value = jwtservice.verifytoken(token)
+    if(value){
+      return value
+    } else{
+      return false
+    }
+  },
+  getUserById:async function(id,callback){
+    var query={id}
+    return userregdb.findUserbyCustId(query,(user,msg)=>{
+      callback(user)
+    })
   }
 };
