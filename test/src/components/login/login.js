@@ -9,7 +9,10 @@ class login extends React.Component {
     render() {
     
         return (
-            <div>login</div>
+            <div>
+            
+            
+            </div>
         );
     }
     componentDidMount(){
