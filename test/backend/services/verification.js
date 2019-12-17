@@ -1,4 +1,6 @@
 const sgMail = require('@sendgrid/mail');
+var validOptions = { apikey: 'arGbiAd7xEw-hK40B91lvkiWoa3YYKAMsr2ERx5vFq' };
+var tl = require('TextLocal')(validOptions); 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const verifydb = require('../models').verifykeys
 module.exports={
@@ -126,6 +128,9 @@ module.exports={
         var now = new Date();
         now.setMonth( now.getMonth() + 1 );
         return now;
+    },
+    sendOTP:function(phone){
+       return tl.sendSMS(phone, 'this is a test message', 'Bank.com', function (err, data) { return true});
     }
 
 }

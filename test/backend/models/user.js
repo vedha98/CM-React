@@ -90,6 +90,7 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     user.hasMany(models.accounts)
     user.hasOne(models.verifykeys)
+    user.hasOne(models.otpkeys)
   };
   return user;
 };

@@ -35,7 +35,13 @@ module.exports = {
         userregdb.CheckPassword(user,data.password,(res)=>{
           if(res){
             if(user.everified===true){
-              callback(true,"user logged in")
+             
+              if(user.pverified===true){
+                callback(true,"user logged in")
+              }else{
+
+                callback(false,"please enter your otp")
+              }
             }else{   
               verify.sendVerifyMail(user)
               callback(false,"please verify your email")
