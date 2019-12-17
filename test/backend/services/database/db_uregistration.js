@@ -13,7 +13,7 @@ module.exports={
         bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
                 password=hash
-                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,ndob,everified:false,pverified:false,averified:false,tokenlogin:false,balance:0,refferal:reffno,accno:raccno,everifycode:verifycode}).then(
+                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,ndob,everified:false,pverified:false,averified:false,tokenlogin:false,refferal:reffno,everifycode:verifycode}).then(
                     ()=>{
                         callback(true)
                         
@@ -25,8 +25,16 @@ module.exports={
         });
         
     },
-    checkExist:function(user){
-        return true
+    checkExist: async function(user){
+        const aadharNo = String(user.aadharNo)
+      return  userdb.findOne({where:{aadharNo}}).then(user=>{
+        if(user){
+            return false
+        }else{
+            return true
+        }
+      });
+    
     },
     findUserbyAccNo:function(data,callback){
         const accno = String(data.accno);

@@ -47,10 +47,6 @@ module.exports = {
         type:Sequelize.BOOLEAN,
         allowNull:false
     },
-    balance:{
-        type:Sequelize.INTEGER,
-        allowNull:false
-    },
     refferal:{
         type:Sequelize.STRING,
         allowNull:false
@@ -79,10 +75,7 @@ module.exports = {
         allowNull:false
         
     },
-    accno:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
+
     createdAt:{
         type:Sequelize.DATE
     },

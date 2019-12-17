@@ -5,14 +5,22 @@ module.exports = {
    ValidateAndCreateUser: async function (user,callback) {
     uservalidation.ValidateUser(user,(val,msg)=>{
       if(val){
-        userregdb.createUser(user,val=>{
-          if(val){
-            callback(true,"usercreated")  
+        userregdb.checkExist(user).then(exist=>{
+          if(exist){
+            userregdb.createUser(user,val=>{
+              if(val){
+                callback(true,"usercreated")  
+              }else{
+                callback(false,"user creation failed")  
+              }
+              
+            })
           }else{
-            callback(false,"user creation failed")  
+            callback(false,"user already exists")  
           }
           
         })
+        
       }else{
         callback(false,msg)
       }

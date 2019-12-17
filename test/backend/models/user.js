@@ -48,10 +48,6 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.BOOLEAN,
       allowNull:false
   },
-  balance:{
-      type:DataTypes.INTEGER,
-      allowNull:false
-  },
   refferal:{
       type:DataTypes.STRING,
       allowNull:false
@@ -80,10 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
       
   },
-  accno:{
-      type:DataTypes.STRING,
-      allowNull:false
-  },
+
   createdAt:{
       type:DataTypes.DATE
   },
