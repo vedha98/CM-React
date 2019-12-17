@@ -1,8 +1,10 @@
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
+const verifydb = require('../models').verifykeys
 module.exports={
     sendVerifyMail:function(user){
+
+    return verifydb.findOne({where:{userId:String(user.id)}}).then(val=>{
         const msg = {
             to: user.email,
             from: 'bank@example.com',
@@ -102,7 +104,7 @@ module.exports={
             
             
             
-            <center><a href ="https://bank.com/validatemail/${user.everifycode}" class="confirmation-url btn-primary" style="color:#1EA69A;word-wrap:break-word;font-family:&quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;text-decoration:none;background-color:#FF7F45;border:solid #FF7F45;line-height:2;max-width:100%;font-size:14px;padding:8px 40px 8px 40px;margin-top:30px;margin-bottom:30px;font-weight:bold;cursor:pointer;display:inline-block;border-radius:30px;margin-left:auto;margin-right:auto;text-align:center;color:#FFF !important">Confirm Email</a></center>
+            <center><a href ="http://localhost:8000/api/users/validate/${val.key}" class="confirmation-url btn-primary" style="color:#1EA69A;word-wrap:break-word;font-family:&quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;text-decoration:none;background-color:#FF7F45;border:solid #FF7F45;line-height:2;max-width:100%;font-size:14px;padding:8px 40px 8px 40px;margin-top:30px;margin-bottom:30px;font-weight:bold;cursor:pointer;display:inline-block;border-radius:30px;margin-left:auto;margin-right:auto;text-align:center;color:#FFF !important">Confirm Email</a></center>
             
             
             
@@ -114,8 +116,16 @@ module.exports={
             
             </body>`
           };
-          sgMail.send(msg);
+         
+            sgMail.send(msg);
+          })
+         
 
+    },
+    getEXpDate : function(){
+        var now = new Date();
+        now.setMonth( now.getMonth() + 1 );
+        return now;
     }
 
 }

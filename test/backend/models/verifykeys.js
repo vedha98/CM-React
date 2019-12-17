@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     expDate: DataTypes.DATE
   }, {});
   verifykeys.associate = function(models) {
-    // associations can be defined here
+   
   };
   return verifykeys;
 };

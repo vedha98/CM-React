@@ -1,5 +1,6 @@
 const uservalidation = require('../services/uservalidation');
 const userregdb = require('../services/database/db_uregistration')
+const verifydb = require('../services/database/db_verification')
 const verify = require('../services/verification')
 module.exports = {
    ValidateAndCreateUser: async function (user,callback) {
@@ -49,5 +50,11 @@ module.exports = {
      
 
     })
+  },
+  ValidateEKey:function(key,callback){
+   verifydb.checkKey(key,val=>{callback(val)})
+  },
+  EVerifyUser:function(userid){
+    return userregdb.Everify(userid).then(val=>{return true})
   }
 };

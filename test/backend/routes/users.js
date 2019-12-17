@@ -34,4 +34,14 @@ router.post('/login',(req,res)=>{
         res.json({success:false,msg:"no Customer ID"})
     }
 })
+router.get('/validate/:key',(req,res)=>{
+    userController.ValidateEKey(req.params.key,val=>{
+        if(val){
+            userController.EVerifyUser(val.userId).then(val=>{res.json({success:"true",msg:"user verified successfully"})})
+        }else{
+            res.json({msg:"wrong key"})
+        }
+    })
+
+})
 module.exports = router
