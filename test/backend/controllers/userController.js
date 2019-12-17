@@ -10,7 +10,7 @@ module.exports = {
           if(exist){
             userregdb.createUser(user,val=>{
               if(val){
-                callback(true,"usercreated")  
+                callback(user,"usercreated")  
               }else{
                 callback(false,"user creation failed")  
               }

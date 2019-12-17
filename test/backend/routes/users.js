@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
-
+const config = require('../config/jwttoken')
+const jwt = require('jsonwebtoken');
 //get all users
 router.get('/',(req,res)=>{
   
@@ -25,7 +26,10 @@ router.post('/login',(req,res)=>{
     if(userdata.id){
         if(userdata.password){
             userController.CheckPasswordAcc(userdata,(val,msg)=>{
-                res.json({success:val,msg})
+                const token = jwt.sign({id:userdata.id}, config.secret, {
+                    expiresIn: 604800 
+                  });
+                res.json({token:'JWT'+token,user:val,msg:msg})
             })
         }else{
             res.json({success:false,msg:"no password"})
