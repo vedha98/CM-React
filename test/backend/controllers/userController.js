@@ -39,7 +39,7 @@ module.exports = {
               if(user.pverified===true){
                 callback(true,"user logged in")
               }else{
-
+                verify.sendOTP(user)
                 callback(false,"please enter your otp")
               }
             }else{   

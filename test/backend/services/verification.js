@@ -1,17 +1,18 @@
 const sgMail = require('@sendgrid/mail');
-var validOptions = { apikey: 'arGbiAd7xEw-hK40B91lvkiWoa3YYKAMsr2ERx5vFq' };
-var tl = require('TextLocal')(validOptions); 
+var http = require('http');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const verifydb = require('../models').verifykeys
-module.exports={
-    sendVerifyMail:function(user){
+const otpdb = require('../models').otpkeys
 
-    return verifydb.findOne({where:{userId:String(user.id)}}).then(val=>{
-        const msg = {
-            to: user.email,
-            from: 'bank@example.com',
-            subject: 'Bank - Email Verification',
-            html: `
+module.exports = {
+  sendVerifyMail: function (user) {
+
+    return verifydb.findOne({ where: { userId: String(user.id) } }).then(val => {
+      const msg = {
+        to: user.email,
+        from: 'bank@example.com',
+        subject: 'Bank - Email Verification',
+        html: `
             <head><style type="text/css" title="x-apple-mail-formatting"></style>
             
                 <meta name="viewport" content="width = 375, initial-scale = -1">
@@ -117,20 +118,33 @@ module.exports={
             
             
             </body>`
-          };
-         
-            sgMail.send(msg);
-          })
-         
+      };
 
-    },
-    getEXpDate : function(){
-        var now = new Date();
-        now.setMonth( now.getMonth() + 1 );
-        return now;
-    },
-    sendOTP:function(phone){
-       return tl.sendSMS(phone, 'this is a test message', 'Bank.com', function (err, data) { return true});
-    }
+      sgMail.send(msg);
+    })
+
+
+  },
+  getEXpDate: function () {
+    var now = new Date();
+    now.setMonth(now.getMonth() + 1);
+    return now;
+  },
+  sendOTP: function (user) {
+    return otpdb.findOne({ where: { userId: String(user.id) } }).then(val => {
+      const accountSid = 'ACd3c013d422d2980354837d674a6b998c';
+    const authToken = '18869c01bd597b437507518ad119e2c5';
+    const client = require('twilio')(accountSid, authToken);
+
+client.messages
+  .create({
+     body: val.key,
+     from: '+12055767190',
+     to: '+91'+user.phone
+   })
+  .then(message => console.log(message.sid));    })
+
+     
+  }
 
 }
