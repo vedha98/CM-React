@@ -2,9 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const accounts = sequelize.define('accounts', {
     AccountNo: DataTypes.STRING,
-    custId: DataTypes.STRING,
+    userId: DataTypes.STRING,
     balance: DataTypes.INTEGER,
-    IsPrimary: DataTypes.BOOLEAN
+    IsPrimary: DataTypes.BOOLEAN,
+    AccountType:DataTypes.STRING
   }, {});
   accounts.associate = function(models) {
     // associations can be defined here

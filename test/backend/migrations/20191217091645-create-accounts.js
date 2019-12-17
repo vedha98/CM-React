@@ -12,7 +12,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      custId: {
+      userId: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      AccountType: {
         allowNull: false,
         type: Sequelize.STRING
       },
