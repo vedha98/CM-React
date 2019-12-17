@@ -36,9 +36,9 @@ module.exports={
       });
     
     },
-    findUserbyAccNo:function(data,callback){
-        const accno = String(data.accno);
-        userdb.findOne({where:{accno}}).then(user=>{
+    findUserbyCustId:function(data,callback){
+        const cid = String(data.id);
+        userdb.findOne({where:{id:cid}}).then(user=>{
             if(!user) callback(false,"user does not exist")
             else{
                 callback(user,"user found")

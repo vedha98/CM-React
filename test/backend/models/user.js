@@ -55,10 +55,6 @@ module.exports = (sequelize, DataTypes) => {
   refferedcode:{
       type:DataTypes.STRING
   },
-  everifycode:{
-    type:DataTypes.STRING,
-    allowNull:false
-},
   dob:{
       type:DataTypes.DATE,
       allowNull:false

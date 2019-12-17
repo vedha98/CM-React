@@ -22,7 +22,7 @@ router.post('/register',(req,res)=>{
 })
 router.post('/login',(req,res)=>{
     const userdata = req.body;
-    if(userdata.accno){
+    if(userdata.id){
         if(userdata.password){
             userController.CheckPasswordAcc(userdata,(val,msg)=>{
                 res.json({success:val,msg})
@@ -31,7 +31,7 @@ router.post('/login',(req,res)=>{
             res.json({success:false,msg:"no password"})
         }
     }else{
-        res.json({success:false,msg:"no account number"})
+        res.json({success:false,msg:"no Customer ID"})
     }
 })
 module.exports = router

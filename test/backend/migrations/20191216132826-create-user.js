@@ -66,10 +66,6 @@ module.exports = {
         type:Sequelize.STRING,
         allowNull:false
     },
-    everifycode:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
     ndob:{
         type:Sequelize.DATE,
         allowNull:false

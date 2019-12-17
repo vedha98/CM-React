@@ -74,7 +74,7 @@ module.exports={
             
                             <td class="container" bgcolor="#FFFFFF" style="display:block !important;margin:0 auto !important;clear:both !important">
             
-                              <img src="https://d2oz8i5n9se8ej.cloudfront.net/bg/background-email-header.jpg" style="max-width:100%">
+                              <img style="max-width:100%">
             
                            </td>
             

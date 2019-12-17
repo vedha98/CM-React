@@ -29,7 +29,7 @@ module.exports = {
       
   },
   CheckPasswordAcc(data,callback){
-    userregdb.findUserbyAccNo(data,(user,msg)=>{
+    userregdb.findUserbyCustId(data,(user,msg)=>{
       if(user){
         userregdb.CheckPassword(user,data.password,(res)=>{
           if(res){
