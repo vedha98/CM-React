@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import { Button, Form, Col,Row, Container, Alert } from 'react-bootstrap';
 import './login.css';
 
@@ -19,6 +20,9 @@ class login extends React.Component {
         };
 
     }
+    goDashboard() {
+        this.props.history.push('/dashboard');
+      }
     handleLogin(    ){
         this.setState({validation:{id:"",Password:""}})
 
@@ -30,7 +34,13 @@ class login extends React.Component {
             password: this.state.Password
           })
           .then(function (response) {
-            console.log(response);
+            
+            if(response.data.success){
+                localStorage.setItem('token',response.data.token)
+                self.goDashboard()
+            }else{
+                self.setState({login_result:response.data.msg})
+            }
           })
           .catch(function (error) {
             console.log(error);
@@ -92,8 +102,8 @@ class login extends React.Component {
         );
     }
     componentDidMount() {
-        
+        localStorage.clear()
     }
 }
 
-export default login;
+export default withRouter(login);
