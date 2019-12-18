@@ -23,7 +23,7 @@ module.exports = {
        return(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(pan))
    },
    DATE: function(date){
-       return(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(date))
+       return(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(date))
    },
    Phone: function(phon){
        return(/^\d{10}$/.test(phon))

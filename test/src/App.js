@@ -4,6 +4,7 @@ import Login from './components/login/login';
 import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
 import Dash from './components/dashboard/dashboard';
+import SignUp from './components/signup/signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -39,7 +40,8 @@ function App() {
           
           
           <Route exact path="/login" component={Login}/>
-          <Route exact path="/home" component={Home}/>       
+          <Route exact path="/home" component={Home}/>     
+          <Route exact path="/signup" component={SignUp}/>  zz
           <PrivateRoute path="*" component={Dash}/>
           
         </Switch>

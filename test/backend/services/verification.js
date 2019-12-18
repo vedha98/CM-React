@@ -1,6 +1,6 @@
 const sgMail = require('@sendgrid/mail');
 var http = require('http');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey("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");
 const verifydb = require('../models').verifykeys
 const otpdb = require('../models').otpkeys
 
@@ -119,7 +119,7 @@ module.exports = {
             
             </body>`
       };
-
+      console.log("sending mail")
       sgMail.send(msg);
     })
 
