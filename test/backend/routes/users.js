@@ -32,10 +32,11 @@ router.post('/login',(req,res)=>{
     if(userdata.id){
         if(userdata.password){
             userController.CheckPasswordAcc(userdata,(val,msg)=>{
-                const token = jwt.sign({id:userdata.id}, config.secret, {
+                let token="" 
+                if(val){token = jwt.sign({id:userdata.id}, config.secret, {
                     expiresIn: 604800 
-                  });
-                res.json({token:token,user:val,msg:msg})
+                  })}
+                res.json({token:token,success:val,msg:msg})
             })
         }else{
             res.json({success:false,msg:"no password"})
