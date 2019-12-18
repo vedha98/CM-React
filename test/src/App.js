@@ -12,7 +12,21 @@ import {
   Redirect,
 
 } from "react-router-dom";
-
+const testAuth=()=>{
+  const token = localStorage.getItem("token")
+  if(token){
+    return true}else{return false}
+}
+const PrivateRoute =({ component: Component, ...rest }) =>{
+  let val =testAuth() 
+  return(<Route {...rest} render={(props) => (
+    val=== true
+     ? <Component {...props} />
+     : <Redirect to='login' />
+ )} />)
+  
+ 
+} 
 function App() {
   return (
     <div className="app">
@@ -24,10 +38,9 @@ function App() {
         <Switch>
           
           
-          <Route exact path="/user/login" component={Login}/>
-          <Route exact path="/home" component={Home}/>
-          <Route exact path="/dashboard" component={Dash}/>
-          <Route  path="*"  render={() => (<Redirect to="/home" />)}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/home" component={Home}/>       
+          <PrivateRoute path="*" component={Dash}/>
           
         </Switch>
      
