@@ -19,7 +19,7 @@ module.exports={
         bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
                 password=hash
-                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,ndob,everified:false,pverified:false,averified:false,tokenlogin:false,refferal:reffno}).then(
+                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,ndob,everified:false,pverified:true,averified:true,tokenlogin:false,refferal:reffno}).then(
                     (user)=>{
                         verifykeys.create({userId:user.id,key:verifycode,expDate:exp}).then(
                             (newverify)=>{

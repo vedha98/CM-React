@@ -25,7 +25,7 @@ class signup extends React.Component {
             phone:"",
             ndob:"",
             valid_result:"",
-            stage:4,
+            stage:0,
             validation:{
                 firstname:"",
                 lastname:"",

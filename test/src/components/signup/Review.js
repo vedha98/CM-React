@@ -3,7 +3,7 @@ import React from 'react';
 const Review = (props) => {
     return (
         <div className="form">
-        {props.valid_result !== "" ? <div className="alert">{props.valid_result}</div> : null}
+       
         <div className="form-input review-item">
             <div className="review-header">first name</div>
              <div className="review-desc">{props.firstname}</div>
@@ -44,6 +44,7 @@ const Review = (props) => {
             <div className="review-header">nominee dob</div>
              <div className="review-desc">{props.ndob}</div>
         </div>
+        {props.valid_result !== "" ? <div className="alert">{props.valid_result}</div> : null}
         <div className="form-action">
                     <button className="step-button" onClick={props.prevStep}>Prev Step</button>
                     <button className="step-button" onClick={props.nextStep}>Submit</button>
