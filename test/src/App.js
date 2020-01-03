@@ -32,7 +32,6 @@ function App() {
   return (
     <div className="app">
           <Router>
-      <Navbar></Navbar>
         
 
         
