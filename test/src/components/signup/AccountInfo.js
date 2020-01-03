@@ -30,15 +30,15 @@ export class accountinfo extends Component {
                 
                 <div className="form-input">
                     <div className="input-group">
-                        <input placeholder="firstname" onChange={this.props.handleChange('firstname')}></input>
+                        <input value={this.props.firstname} placeholder="firstname" onChange={this.props.handleChange('firstname')}></input>
                     </div>
                     <div className="input-group" >
-                        <input placeholder="lastname" onChange={this.props.handleChange('lastname')}></input>
+                        <input value={this.props.lastname} placeholder="lastname" onChange={this.props.handleChange('lastname')}></input>
                     </div>
                 </div>
                 <div className="form-input">
                 <div className="input-group">
-                        <input placeholder="email" onChange={this.props.handleChange('email')}></input>
+                        <input value={this.props.email} placeholder="email" onChange={this.props.handleChange('email')}></input>
                     </div>
                 </div>
                 <div className="form-action">

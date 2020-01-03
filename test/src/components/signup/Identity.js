@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class PersonalInfo extends Component {
+export class Identity extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,14 +10,14 @@ export class PersonalInfo extends Component {
 
     handleClick = (e) => {
         console.log(this.props.email)
-        if (!/^[A-Za-z]\w{7,14}$/.test(this.props.password)) {
-            this.setState({ validation: "invalid password" })
+        if (!/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(this.props.panNo)) {
+            this.setState({ validation: "invalid PAN number" })
         }
-        else if (this.props.password !== this.props.cpassword) {
-            this.setState({ validation: "passwords do not match" })
+        else if (!/^\d{10}$/.test(this.props.phone)) {
+            this.setState({ validation: "invalid phone number" })
         }
-        else if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(this.props.dob)) {
-            this.setState({ validation: "invalid dob" })
+        else if (!/^\d{12}$/.test(this.props.aadharNo) && !/^\d{16}$/.test(this.props.aadharNo)) {
+            this.setState({ validation: "invalid aadhar number" })
         }
         else {
             this.props.nextStep()
@@ -29,15 +29,15 @@ export class PersonalInfo extends Component {
                 {this.state.validation !== "" ? <div className="alert">{this.state.validation}</div> : null}
                 <div className="form-input">
                     <div className="input-group">
-                        <input type="password" value={this.props.password} placeholder="password" onChange={this.props.handleChange('password')}></input>
+                        <input type="text" value={this.props.panNo} placeholder="pan number" onChange={this.props.handleChange('panNo')}></input>
                     </div>
                     <div className="input-group" >
-                        <input type="password" value={this.props.cpassword} placeholder="confirm password" onChange={this.props.handleChange('cpassword')}></input>
+                        <input type="number" value={this.props.phone} placeholder="phone password" onChange={this.props.handleChange('phone')}></input>
                     </div>
                 </div>
                 <div className="form-input">
                     <div className="input-group">
-                        <input type="date" value={this.props.dob} placeholder="dob" onChange={this.props.handleChange('dob')}></input>
+                        <input type="number" value={this.props.aadharNo} placeholder="aadhar number" onChange={this.props.handleChange('aadharNo')}></input>
                     </div>
                 </div>
                 <div className="form-action">
@@ -50,4 +50,4 @@ export class PersonalInfo extends Component {
     }
 }
 
-export default PersonalInfo;
+export default Identity;

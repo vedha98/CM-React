@@ -4,6 +4,8 @@ import AccountInfo from './AccountInfo'
 import PersonalInfo from './PersonalInfo';
 import Steps from './Steps'
 import "./signup.css"
+import Identity from './Identity';
+import Nominee from './Nominee';
 const axios = require('axios');
 class signup extends React.Component {
     constructor(props) {
@@ -92,7 +94,13 @@ class signup extends React.Component {
         <AccountInfo {...this.state} nextStep={this.nextstep} handleChange={this.handleChange}/>
     ),
     1: (
-        <PersonalInfo {...this.state} nextStep={this.nextstep} handleChange={this.handleChange}/>
+        <PersonalInfo {...this.state} prevStep={this.prevstep} nextStep={this.nextstep} handleChange={this.handleChange}/>
+    ),
+    2:(
+        <Identity {...this.state}  prevStep={this.prevstep} nextStep={this.nextstep} handleChange={this.handleChange}/>
+    ),
+    3:(
+        <Nominee {...this.state}  prevStep={this.prevstep} nextStep={this.nextstep} handleChange={this.handleChange}/>
     ),
     default: (
       <AccountInfo/>

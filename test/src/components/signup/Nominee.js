@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class PersonalInfo extends Component {
+export class Nominee extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,14 +10,14 @@ export class PersonalInfo extends Component {
 
     handleClick = (e) => {
         console.log(this.props.email)
-        if (!/^[A-Za-z]\w{7,14}$/.test(this.props.password)) {
-            this.setState({ validation: "invalid password" })
+        if(!/^[A-Za-z\s]+$/.test(this.props.nfirstname)){
+            this.setState({validation:"invalid nominee firstname"})
         }
-        else if (this.props.password !== this.props.cpassword) {
-            this.setState({ validation: "passwords do not match" })
+        else if(!/^[A-Za-z\s]+$/.test(this.props.nlastname)){
+            this.setState({validation:"invalid nominee lastname"})
         }
-        else if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(this.props.dob)) {
-            this.setState({ validation: "invalid dob" })
+        else if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(this.props.ndob)) {
+            this.setState({ validation: "invalid nominee dob" })
         }
         else {
             this.props.nextStep()
@@ -29,15 +29,15 @@ export class PersonalInfo extends Component {
                 {this.state.validation !== "" ? <div className="alert">{this.state.validation}</div> : null}
                 <div className="form-input">
                     <div className="input-group">
-                        <input type="password" value={this.props.password} placeholder="password" onChange={this.props.handleChange('password')}></input>
+                        <input type="password" value={this.props.nfirstname} placeholder="nominee firstname" onChange={this.props.handleChange('nfirstname')}></input>
                     </div>
                     <div className="input-group" >
-                        <input type="password" value={this.props.cpassword} placeholder="confirm password" onChange={this.props.handleChange('cpassword')}></input>
+                        <input type="password" value={this.props.nlastname} placeholder="nominee lastname" onChange={this.props.handleChange('nlastname')}></input>
                     </div>
                 </div>
                 <div className="form-input">
                     <div className="input-group">
-                        <input type="date" value={this.props.dob} placeholder="dob" onChange={this.props.handleChange('dob')}></input>
+                        <input type="date" value={this.props.ndob} placeholder="ndob" onChange={this.props.handleChange('ndob')}></input>
                     </div>
                 </div>
                 <div className="form-action">
@@ -50,4 +50,4 @@ export class PersonalInfo extends Component {
     }
 }
 
-export default PersonalInfo;
+export default Nominee;
