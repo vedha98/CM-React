@@ -6,6 +6,7 @@ import Steps from './Steps'
 import "./signup.css"
 import Identity from './Identity';
 import Nominee from './Nominee';
+import Review from './Review';
 const axios = require('axios');
 class signup extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class signup extends React.Component {
             phone:"",
             ndob:"",
             valid_result:"",
-            stage:0,
+            stage:4,
             validation:{
                 firstname:"",
                 lastname:"",
@@ -55,7 +56,7 @@ class signup extends React.Component {
     goLogin() {
         this.props.history.push('/login');
       }
-    registerClick(){
+    registerClick=()=>{
         var self = this;
         console.log(this.state)
       axios.post('http://localhost:8000/api/users/register', {
@@ -102,6 +103,10 @@ class signup extends React.Component {
     3:(
         <Nominee {...this.state}  prevStep={this.prevstep} nextStep={this.nextstep} handleChange={this.handleChange}/>
     ),
+    4:(
+        <Review {...this.state}  prevStep={this.prevstep} nextStep={this.registerClick}/>
+    ),
+
     default: (
       <AccountInfo/>
     )

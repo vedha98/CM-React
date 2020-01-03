@@ -58,3 +58,19 @@ input{
     border-radius: 0.2rem;
     color: white;
 }
+.review-header{
+    color: rgb(0, 140, 179);
+    margin: 1rem;
+    width: 200px;
+    text-align: right;
+}
+.review-desc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    color: rgb(61, 60, 60);
+}
+.review-item{
+    justify-content: right;
+}

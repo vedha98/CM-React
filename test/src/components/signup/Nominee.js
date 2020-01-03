@@ -29,10 +29,10 @@ export class Nominee extends Component {
                 {this.state.validation !== "" ? <div className="alert">{this.state.validation}</div> : null}
                 <div className="form-input">
                     <div className="input-group">
-                        <input type="password" value={this.props.nfirstname} placeholder="nominee firstname" onChange={this.props.handleChange('nfirstname')}></input>
+                        <input  value={this.props.nfirstname} placeholder="nominee firstname" onChange={this.props.handleChange('nfirstname')}></input>
                     </div>
                     <div className="input-group" >
-                        <input type="password" value={this.props.nlastname} placeholder="nominee lastname" onChange={this.props.handleChange('nlastname')}></input>
+                        <input value={this.props.nlastname} placeholder="nominee lastname" onChange={this.props.handleChange('nlastname')}></input>
                     </div>
                 </div>
                 <div className="form-input">
