@@ -10,8 +10,14 @@ module.exports={
         let existence = await accservice.checkAccountExists(AccountNo);
         if(existence){
         let acc = await accservice.createNewAccount(userid,AccountNo,isPrimary)
-        console.log(acc)
+        return({msg:"account created successfully",success:true})
+        }else{
+            return({msg:"account already exists",success:false})
         }
 
+
+    },
+    getAllAccounts:async function(user){
+        return await accservice.getAccounts(user.id)
     }
 }
