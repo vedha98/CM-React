@@ -2,8 +2,8 @@ import React from 'react';
 
 const Welcome = ({name}) => {
     return (
-        <div>
-            Welcome {name}
+        <div className="welcome-wrap">
+            Welcome back {name} ,
         </div>
     );
 }
