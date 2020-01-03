@@ -3,8 +3,8 @@ const accountController = require("../controllers/accountController")
 const express = require('express');
 const router = express.Router();
 router.post('/createacc',checkToken,(req,res)=>{
-    accountController.ValidateAndCreateAccount(req.user,req.body).then(val=>{
-        
+    accountController.ValidateAndCreateAccount(req.user,req.body).then((val,msg)=>{
+        res.json({val,msg})
     })
 })
 
