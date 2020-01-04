@@ -11,18 +11,29 @@ class dashboard extends React.Component {
         super(props);
         this.state = {
             user:{},
-            newaccount:{}
+            newaccount:{},
+            showa:false
           };
     }
     showAdd=()=>{
-
+        this.setState({
+            showa:true
+        })
+    }
+    hideAdd=()=>{
+        this.setState({
+            showa:false
+        })
     }
     render() {
         return (
             <div className="dashboard-wrap">
-                <AddAccount/>
+              
+                
                 <SideNav/>
+                
                 <div className="main-dash">
+                {this.state.showa?<AddAccount/>:null}
                     <TopNav/>
                     <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
                     <Accounts/>
