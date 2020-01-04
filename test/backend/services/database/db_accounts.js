@@ -20,15 +20,18 @@ module.exports = {
             }
         });
     },
+    removePrimary:async function(userId){
+        accountsdb.findAll({ where: { userId } }).then((instances) => {
+            instances.forEach(function (instance) {
+                instance.update({ IsPrimary: false });
+            });
+        });
+    },
     createNewAccount: async function (userid, accountno, isprimary) {
         let userId = String(userid);
         const AccountNo = String(accountno)
         if (isprimary) {
-            await accountsdb.findAll({ where: { userId } }).then((instances) => {
-                instances.forEach(function (instance) {
-                    instance.update({ IsPrimary: false });
-                });
-            });
+            await this.removePrimary(userId)
         }
         return await accountsdb.create({ userId, AccountNo, IsPrimary: isprimary, balance: 0, AccountType: "PERSONAL" })
     },

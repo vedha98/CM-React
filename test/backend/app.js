@@ -2,12 +2,11 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
 const app = express();
-
+//cors middleware
+app.use(cors());
 app.get("/",(req,res)=>{
     res.json({msg:"success"});
 })
-//cors middleware
-app.use(cors());
 
 //bodyparser middleware
 app.use(bodyparser.json());

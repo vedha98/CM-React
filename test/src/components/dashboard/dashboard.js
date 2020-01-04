@@ -5,6 +5,7 @@ import TopNav from './TopNav';
 import Welcome from './Welcome';
 import Axios from 'axios';
 import AddAccount from './AddAccount';
+import Accounts from './Accounts';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,9 @@ class dashboard extends React.Component {
             newaccount:{}
           };
     }
+    showAdd=()=>{
+
+    }
     render() {
         return (
             <div className="dashboard-wrap">
@@ -20,8 +24,8 @@ class dashboard extends React.Component {
                 <SideNav/>
                 <div className="main-dash">
                     <TopNav/>
-                    <Welcome name={this.state.user.firstname}/>
-                    
+                    <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
+                    <Accounts/>
                 </div>
                 
             </div>
