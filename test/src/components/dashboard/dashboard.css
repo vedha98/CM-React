@@ -8,7 +8,7 @@
 }
 .side-wrap{
     min-width: 200px;
-    background-color: #1b2430;
+    background-color: rgb(14, 46, 59);
     height: 100%;
 }
 .side-item{
@@ -30,7 +30,7 @@
 }
 
 .header{
-    background-color: #232f3e!important;
+    background-color: rgb(21, 67, 87)!important;
     padding: 1rem;
     font-size: 0.8rem;
     color: white;
@@ -57,8 +57,9 @@
 }
 .accounts-wrap{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin: 1.5rem;
 }
 .account-card{
     margin: 0.5rem;
@@ -121,10 +122,15 @@ border-radius: 0.2rem;
     justify-content: center;
     align-items: center!important;
     
+    
 }
 .primary-select{
     margin: 2rem;
-    padding: 0.5rem;
+    outline: none;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
 }
 .container-checkbox {
     display: block;
@@ -176,4 +182,14 @@ border-radius: 0.2rem;
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
+}
+.close-wrap{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 1rem;
+}
+.close-wrap>button{
+    border: none;
+    background-color: rgba(255, 99, 71, 0.719);
+    color: white;
 }

@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Login from './components/login/login';
 import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
@@ -29,6 +32,7 @@ const PrivateRoute =({ component: Component, ...rest }) =>{
  
 } 
 function App() {
+  toast.configure()
   return (
     <div className="app">
           <Router>

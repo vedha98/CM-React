@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import AccountInfo from './AccountInfo'
 import PersonalInfo from './PersonalInfo';
 import Steps from './Steps'
+import {toast} from 'react-toastify'
 import "./signup.css"
 import Identity from './Identity';
 import Nominee from './Nominee';
@@ -77,13 +78,14 @@ class signup extends React.Component {
           if(response.data.success){
               
               self.goLogin()
+              toast.success(response.data.msg)
           }else{
-              self.setState({valid_result:response.data.msg})
+              toast.error(response.data.msg)
           }
         })
         .catch(function (error) {
           console.log(error);
-          self.setState({login_result:"unable to connect to the server"})
+          toast.error("unable to connect to the server")
 
     })}
     render() {

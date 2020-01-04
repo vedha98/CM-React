@@ -1,9 +1,12 @@
 const accservice = require('../services/database/db_accounts')
+const valservice = require('../helpers/validator')
 module.exports={
     ValidateAndCreateAccount:async function(user,accountdata){
         let AccountNo=accountdata.accountNo;
+        
         let userid=user.id;
         let isPrimary=false;
+        if(!valservice.AccNo(AccountNo)){ return ({success:false,msg:"invalid account number"})}
         if(accountdata.isPrimary)isPrimary=true
         let isfirst = await accservice.checkFirst(userid)
         if(isfirst)isPrimary=true;

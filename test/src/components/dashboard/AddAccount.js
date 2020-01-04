@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopNav from './TopNav';
-
+import axios from 'axios';
+import{toast} from 'react-toastify'
 export class AddAccount extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +16,26 @@ export class AddAccount extends Component {
         this.setState({ [input]: e.target.value })
     }
     handleClick = (e) => {
-
+        let config = {
+            headers: {'Authorization': "bearer " + localStorage.getItem("token")}
+        };
+        axios.post('http://localhost:8000/api/accounts/createacc', {
+                accountNo: this.state.accountNo,
+                isPrimary: this.state.isPrimary
+            },config).then(res=>{
+                if(res.data.success){
+                    toast.success(res.data.msg, {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                      });
+                }else{
+                    toast.error(res.data.msg, {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                      });
+                }
+                
+            }
+                
+            )
     }
     handleCheck=(e)=>{
         this.setState({
@@ -26,6 +46,7 @@ export class AddAccount extends Component {
         return (
             <div className="addAccount-wrap">
                 <TopNav></TopNav>
+                <div className="close-wrap"><button onClick={this.props.hideAdd}>close</button></div>
                 <div className="form">
                     {this.state.validation !== "" ? <div className="alert">{this.state.validation}</div> : null}
                     <div className="form-input">
@@ -44,7 +65,7 @@ export class AddAccount extends Component {
                         <div className="input-group select" >
                             Account Type
                         <select className="primary-select" value={this.state.isPrimary} onChange={this.handleChange('isPrimary')}>
-                                <option value={true} >True</option>
+                                <option value={true} >PERSONAL</option>
                                 <option value={false} >False</option>
                             </select>
                         </div>

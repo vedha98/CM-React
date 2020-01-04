@@ -27,5 +27,8 @@ module.exports = {
    },
    Phone: function(phon){
        return(/^\d{10}$/.test(phon))
+   },
+   AccNo:function(accno){
+       return (/^([0-9]{9,18})$/.test(accno))
    }
  };

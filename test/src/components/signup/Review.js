@@ -44,7 +44,6 @@ const Review = (props) => {
             <div className="review-header">nominee dob</div>
              <div className="review-desc">{props.ndob}</div>
         </div>
-        {props.valid_result !== "" ? <div className="alert">{props.valid_result}</div> : null}
         <div className="form-action">
                     <button className="step-button" onClick={props.prevStep}>Prev Step</button>
                     <button className="step-button" onClick={props.nextStep}>Submit</button>

@@ -33,10 +33,10 @@ class dashboard extends React.Component {
                 <SideNav/>
                 
                 <div className="main-dash">
-                {this.state.showa?<AddAccount/>:null}
+                {this.state.showa?<AddAccount hideAdd={this.hideAdd}/>:null}
                     <TopNav/>
                     <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
-                    <Accounts/>
+                    <Accounts />
                 </div>
                 
             </div>
