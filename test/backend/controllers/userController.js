@@ -1,4 +1,5 @@
 const uservalidation = require('../services/uservalidation');
+const userverify = require('../services/verification')
 const userregdb = require('../services/database/db_uregistration')
 const verifydb = require('../services/database/db_verification')
 const jwtservice = require('../services/jwtservice')
@@ -11,7 +12,9 @@ module.exports = {
           if(exist){
             userregdb.createUser(user,val=>{
               if(val){
-                callback(user,"usercreated")  
+                userverify.sendVerifyMail(user);
+                callback(user,"usercreated")
+
               }else{
                 callback(false,"user creation failed")  
               }
