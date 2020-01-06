@@ -1,5 +1,7 @@
-import {GET_ACCOUNTS} from '../actions/types';
+import {GET_ACCOUNTS,ADD_ACCOUNT} from '../actions/types';
+import {toast} from 'react-toastify'
 import axios from 'axios';
+
 
 export const getAccounts = ()=> dispatch =>{
   console.log('get called');
@@ -13,3 +15,27 @@ export const getAccounts = ()=> dispatch =>{
   })
 )
 }
+export const addAccount = (accountNo,isPrimary)=> dispatch =>{
+    console.log('get called');
+    let config = {
+        headers: {'Authorization': "bearer " + localStorage.getItem("token")}
+    };
+    axios.post('http://localhost:8000/api/accounts/createacc', {
+            accountNo,
+            isPrimary
+        },config).then(res=>{
+            if(res.data.success){
+                toast.success("MY SUCCESS");
+                dispatch({
+                    type:ADD_ACCOUNT,
+                    payload:res.data.accounts   
+                })
+               
+            }else{
+               
+            }
+            
+        }
+            
+        )
+  }

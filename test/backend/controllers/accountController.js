@@ -13,9 +13,11 @@ module.exports={
         let existence = await accservice.checkAccountExists(AccountNo);
         if(existence){
         let acc = await accservice.createNewAccount(userid,AccountNo,isPrimary)
-        return({msg:"account created successfully",success:true})
+        let accounts = await this.getAllAccounts(user); 
+        return({msg:"account created successfully",success:true,accounts})
         }else{
-            return({msg:"account already exists",success:false})
+            let accounts = await this.getAllAccounts(user); 
+            return({msg:"account already exists",success:false,accounts})
         }
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TopNav from './TopNav';
 import axios from 'axios';
-import{toast} from 'react-toastify'
 import {connect} from 'react-redux';
 import {getAccounts,addAccount} from '../../actions/accountActions';
 export class AddAccount extends Component {
@@ -18,26 +17,7 @@ export class AddAccount extends Component {
         this.setState({ [input]: e.target.value })
     }
     handleClick = (e) => {
-        let config = {
-            headers: {'Authorization': "bearer " + localStorage.getItem("token")}
-        };
-        axios.post('http://localhost:8000/api/accounts/createacc', {
-                accountNo: this.state.accountNo,
-                isPrimary: this.state.isPrimary
-            },config).then(res=>{
-                if(res.data.success){
-                    toast.success(res.data.msg, {
-                        position: toast.POSITION.BOTTOM_RIGHT
-                      });
-                }else{
-                    toast.error(res.data.msg, {
-                        position: toast.POSITION.BOTTOM_RIGHT
-                      });
-                }
-                
-            }
-                
-            )
+        this.props.addAccount(this.state.accountNo,this.state.isPrimary)
     }
     handleCheck=(e)=>{
         this.setState({
@@ -84,9 +64,9 @@ export class AddAccount extends Component {
 const mapStateToProps = (state)=>{
     console.log(state)
     return{
-        accounts:state.accounts
+        accounts:state.accountsReducer.accounts
       }
 }
    
   
-export default connect(mapStateToProps,{getAccounts})(AddAccount)
+export default connect(mapStateToProps,{getAccounts,addAccount})(AddAccount)

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {toast } from 'react-toastify';
+import {toast ,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/login/login';
 import Home from './components/home/home';
@@ -32,10 +32,10 @@ const PrivateRoute =({ component: Component, ...rest }) =>{
  
 } 
 function App() {
-  toast.configure()
   return (
     <Provider store={Store}>
     <div className="app">
+    
           <Router>
         
 
@@ -51,7 +51,9 @@ function App() {
         </Switch>
      
     </Router>
+    <ToastContainer autoClose={2000} />
     </div>
+    
     </Provider>
         
  

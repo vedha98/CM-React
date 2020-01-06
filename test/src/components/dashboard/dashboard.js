@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import Transaction from './Transaction';
 import {connect} from 'react-redux';
 import {getAccounts} from '../../actions/accountActions';
+import accountReducer from '../../reducers/accountReducer';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -86,7 +87,7 @@ class dashboard extends React.Component {
 const mapStateToProps = (state)=>{
     console.log(state)
     return{
-        accounts:state.accounts
+        accounts:state.accountsReducer.accounts
       }
 }
    
