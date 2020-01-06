@@ -16,6 +16,10 @@
 }
 .review-image{
     justify-content: center;
+   
+}
+.review-image>img{
+    border-radius: 50%;
 }
 .signup-container{
     display: flex;

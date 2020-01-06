@@ -7,6 +7,8 @@ import Axios from 'axios';
 import AddAccount from './AddAccount';
 import Accounts from './Accounts';
 import { toast } from 'react-toastify';
+import { Switch, Route } from 'react-router-dom';
+import Transaction from './Transaction';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -31,13 +33,21 @@ class dashboard extends React.Component {
             <div className="dashboard-wrap">
               
                 
-                <SideNav/>
+                <SideNav user={this.state.user}/>
                 
                 <div className="main-dash">
                 {this.state.showa?<AddAccount hideAdd={this.hideAdd}/>:null}
                     <TopNav/>
-                    <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
-                    <Accounts />
+                    <Switch>    
+                        <Route path="/dashboard/account/:id">
+                        <Transaction />
+                        </Route>
+                        <Route path="/dashboard/">
+                        <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
+                            <Accounts/>
+                        </Route>
+                    </Switch>
+                    
                 </div>
                 
             </div>

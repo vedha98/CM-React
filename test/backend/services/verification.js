@@ -1,12 +1,11 @@
 const sgMail = require('@sendgrid/mail');
 var http = require('http');
-sgMail.setApiKey("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");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const verifydb = require('../models').verifykeys
 const otpdb = require('../models').otpkeys
 
 module.exports = {
   sendVerifyMail: function (user) {
-
     return verifydb.findOne({ where: { userId: String(user.id) } }).then(val => {
       const msg = {
         to: user.email,
@@ -134,18 +133,19 @@ module.exports = {
   sendOTP: function (user) {
     return otpdb.findOne({ where: { userId: String(user.id) } }).then(val => {
       const accountSid = 'ACd3c013d422d2980354837d674a6b998c';
-    const authToken = '18869c01bd597b437507518ad119e2c5';
-    const client = require('twilio')(accountSid, authToken);
+      const authToken = '18869c01bd597b437507518ad119e2c5';
+      const client = require('twilio')(accountSid, authToken);
 
-client.messages
-  .create({
-     body: val.key,
-     from: '+12055767190',
-     to: '+91'+user.phone
-   })
-  .then(message => console.log(message.sid));})
+      client.messages
+        .create({
+          body: val.key,
+          from: '+12055767190',
+          to: '+91' + user.phone
+        })
+        .then(message => console.log(message.sid));
+    })
 
-     
+
   }
 
 }
