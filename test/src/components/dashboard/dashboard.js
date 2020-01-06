@@ -40,7 +40,7 @@ class dashboard extends React.Component {
                     <TopNav/>
                     <Switch>    
                         <Route path="/dashboard/account/:id">
-                        <Transaction />
+                        <Transaction user={this.state.user} />
                         </Route>
                         <Route path="/dashboard/">
                         <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
