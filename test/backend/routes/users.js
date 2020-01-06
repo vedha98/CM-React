@@ -69,6 +69,8 @@ router.get('/tokenlogin',checkToken,(req,res)=>{
     res.json({user:req.user,success:true,msg:"logged in successfully"})
 })
 
-
+router.post('/image',(req,res)=>{
+    console.log(req)
+})
 
 module.exports = router
