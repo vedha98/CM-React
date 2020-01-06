@@ -38,7 +38,8 @@ class signup extends React.Component {
                 nfirstname:"",
                 nlastname:"",
                 phone:"",
-                ndob:"" 
+                ndob:"",
+                image:null 
             }
 
         };
@@ -46,7 +47,25 @@ class signup extends React.Component {
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
       };
+    handleImageChange=(e)=>{
+        
+        e.preventDefault();
+this.setState({imagename:e.target.value})
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                image: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
+      }
       nextstep=()=>{
+         let form = new FormData();
+         form.append("image",this.state.image)
+         console.log(form)
           this.setState(state=>({stage:state.stage+1}))
       }
       prevstep=()=>{
@@ -94,7 +113,7 @@ class signup extends React.Component {
               <Steps currentstep={this.state.stage}/>
              {{
     0: (
-        <AccountInfo {...this.state} nextStep={this.nextstep} handleChange={this.handleChange}/>
+        <AccountInfo {...this.state} nextStep={this.nextstep} handleChange={this.handleChange} handleImageChange={this.handleImageChange}/>
     ),
     1: (
         <PersonalInfo {...this.state} prevStep={this.prevstep} nextStep={this.nextstep} handleChange={this.handleChange}/>

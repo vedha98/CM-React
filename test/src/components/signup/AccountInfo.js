@@ -41,6 +41,11 @@ export class accountinfo extends Component {
                         <input value={this.props.email} placeholder="email" onChange={this.props.handleChange('email')}></input>
                     </div>
                 </div>
+                <div className="form-input">
+                    <div className="input-group">
+                    <input type="file" key={this.props.imagename} placeholder="user image" onChange={this.props.handleImageChange}></input>
+                    </div>
+                </div>
                 <div className="form-action">
                     <button className="step-button" onClick={this.handleClick}>Next Step</button>
                 </div>

@@ -143,7 +143,7 @@ client.messages
      from: '+12055767190',
      to: '+91'+user.phone
    })
-  .then(message => console.log(message.sid));    })
+  .then(message => console.log(message.sid));})
 
      
   }
