@@ -2,13 +2,11 @@ import React from 'react';
 import './App.css';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import Login from './components/login/login';
 import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
 import Dash from './components/dashboard/dashboard';
 import SignUp from './components/signup/signup';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,
