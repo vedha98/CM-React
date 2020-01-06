@@ -16,7 +16,7 @@ const checkToken = async (req, res, next) => {
                         next();
                     }
                     else {
-                        res.json({ success: false, msg: 'no user for this token' });
+                        res.json({ success: false, msg: 'invalid token' });
                     }
                 });
             }

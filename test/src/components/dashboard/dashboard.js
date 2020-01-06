@@ -6,6 +6,7 @@ import Welcome from './Welcome';
 import Axios from 'axios';
 import AddAccount from './AddAccount';
 import Accounts from './Accounts';
+import { toast } from 'react-toastify';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -49,7 +50,20 @@ class dashboard extends React.Component {
         };
         Axios.get('http://localhost:8000/api/users/tokenlogin',config).then(
             val=>{
-                this.setState({user:val.data.user})
+                if(val.data.success){
+                    this.setState({user:val.data.user})
+                    toast.success(val.data.msg, {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                      })
+                }else{
+                    toast.error(val.data.msg)
+                    this.props.history.push('/login', {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                      })
+                }
+                
+
+                
             }
         )
     }

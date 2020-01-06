@@ -66,7 +66,7 @@ router.get('/otpverify/:key',(req,res)=>{
 
 })
 router.get('/tokenlogin',checkToken,(req,res)=>{
-    res.json({user:req.user})
+    res.json({user:req.user,success:true,msg:"logged in successfully"})
 })
 
 

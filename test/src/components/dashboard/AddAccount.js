@@ -57,9 +57,9 @@ export class AddAccount extends Component {
                     <div className="form-input">
                         <div className="input-group select" >
                             Primary Account?
-                        <label class="container-checkbox">
+                        <label className="container-checkbox">
                                 <input defaultChecked={this.state.isPrimary} onChange={this.handleChange('isPrimary')} type="checkbox"></input>
-                                <span class="checkmark"></span>
+                                <span className="checkmark"></span>
                             </label>
                         </div>
                         <div className="input-group select" >
