@@ -12,7 +12,7 @@ module.exports = {
           if(exist){
             userregdb.createUser(user,val=>{
               if(val){
-                userverify.sendVerifyMail(user);
+                
                 callback(user,"usercreated")
 
               }else{

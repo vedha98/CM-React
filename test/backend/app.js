@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 
 //connect db
 const db = require('./config/database');
-
+app.use(express.static('./public'));
 //chec conn
 db.authenticate().then(console.log("true")).catch(err=>{console.log(err)});
 

@@ -1,6 +1,7 @@
 const userdb = require('../../models').users;
 const verifykeys = require('../../models').verifykeys;
 const otpkeys = require('../../models').otpkeys;
+const userverify = require('../verification')
 const generator = require('../../helpers/generator');
 const verification = require('../verification');
 const bcrypt = require('bcrypt');
@@ -8,7 +9,7 @@ const saltRounds = 10;
 
 module.exports={
     createUser:function(user,callback){
-        let {firstname,lastname,email,aadharNo,password,panNo,dob,nfirstname,nlastname,ndob,phone}= user;
+        let {firstname,lastname,email,aadharNo,password,panNo,dob,nfirstname,nlastname,ndob,phone,image}= user;
         raccno=generator.getaccno();
         reffno = generator.getrefno();
         verifycode = generator.getvaluuid();
@@ -19,10 +20,13 @@ module.exports={
         bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
                 password=hash
-                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,ndob,everified:true,pverified:true,averified:true,tokenlogin:false,refferal:reffno}).then(
+                userdb.create({firstname,lastname,email,aadharNo,password,panNo,dob,phone,nfirstname,nlastname,image,ndob,everified:true,pverified:true,averified:true,tokenlogin:false,refferal:reffno}).then(
                     (user)=>{
                         verifykeys.create({userId:user.id,key:verifycode,expDate:exp}).then(
                             (newverify)=>{
+                                newverify.email =email;
+                                newverify.id = userId;
+                                userverify.sendVerifyMail(newverify);
                                 otpkeys.create({userId:newverify.userId,key:otp,expDate:exp}).then(newotp=>{
                                     callback(true)
                                 })

@@ -43,7 +43,7 @@ export class accountinfo extends Component {
                 </div>
                 <div className="form-input">
                     <div className="input-group">
-                    <input type="file" key={this.props.imagename} placeholder="user image" onChange={this.props.handleImageChange}></input>
+                    <input type="file" value={this.props.imagename} placeholder="user image" onChange={this.props.handleImageChange}></input>
                     </div>
                 </div>
                 <div className="form-action">
