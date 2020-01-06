@@ -14,7 +14,9 @@
     font-weight: 800;
     
 }
-
+.review-image{
+    justify-content: center;
+}
 .signup-container{
     display: flex;
     flex-direction: column;
@@ -82,6 +84,9 @@ input{
 .review-item{
     justify-content: right;
 }
+.review-image{
+    justify-content: center;
+}
 @keyframes fade{
     0%{
         opacity: 0;
@@ -92,4 +97,7 @@ input{
     100%{
         opacity: 0;
     }
+}
+input{
+    outline: none;
 }

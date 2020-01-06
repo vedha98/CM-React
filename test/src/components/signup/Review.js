@@ -3,7 +3,9 @@ import React from 'react';
 const Review = (props) => {
     return (
         <div className="form">
-       
+       <div className="form-input review-item review-image">
+            <img width="100px" height="100px" src={props.imagePreviewUrl}></img>
+        </div>
         <div className="form-input review-item">
             <div className="review-header">first name</div>
              <div className="review-desc">{props.firstname}</div>

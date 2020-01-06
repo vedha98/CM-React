@@ -63,17 +63,6 @@ class signup extends React.Component {
         reader.readAsDataURL(file)
     }
     nextstep = () => {
-        let form = new FormData();
-        form.append("image", this.state.image,this.state.image.name)
-        for (var key of form.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
-        axios.post('http://localhost:8000/api/users/image', form, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        console.log(this.state)
         this.setState(state => ({ stage: state.stage + 1 }))
     }
     prevstep = () => {
