@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TopNav from './TopNav';
 import axios from 'axios';
 import{toast} from 'react-toastify'
+import {connect} from 'react-redux';
+import {getAccounts,addAccount} from '../../actions/accountActions';
 export class AddAccount extends Component {
     constructor(props) {
         super(props);
@@ -79,5 +81,12 @@ export class AddAccount extends Component {
         );
     }
 }
-
-export default AddAccount;
+const mapStateToProps = (state)=>{
+    console.log(state)
+    return{
+        accounts:state.accounts
+      }
+}
+   
+  
+export default connect(mapStateToProps,{getAccounts})(AddAccount)

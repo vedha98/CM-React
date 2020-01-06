@@ -7,6 +7,8 @@ import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
 import Dash from './components/dashboard/dashboard';
 import SignUp from './components/signup/signup';
+import {Provider} from 'react-redux';
+import Store from './store';
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,6 +34,7 @@ const PrivateRoute =({ component: Component, ...rest }) =>{
 function App() {
   toast.configure()
   return (
+    <Provider store={Store}>
     <div className="app">
           <Router>
         
@@ -49,6 +52,7 @@ function App() {
      
     </Router>
     </div>
+    </Provider>
         
  
   );

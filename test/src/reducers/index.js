@@ -5,5 +5,5 @@ import accountReducer from './accountReducer';
 
 export default combineReducers({
 
-  account:accountReducer
+  accounts:accountReducer
 })

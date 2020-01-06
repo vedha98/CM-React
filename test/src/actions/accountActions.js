@@ -3,11 +3,13 @@ import axios from 'axios';
 
 export const getAccounts = ()=> dispatch =>{
   console.log('get called');
-axios
-.get('/api/items')
-.then(res=>
+  let url = 'http://localhost:8000/api/accounts/getaccounts'
+       let config = {
+        headers: {'Authorization': "bearer " + localStorage.getItem("token")}
+    };
+        axios.get(url,config).then(res=>
   dispatch({
-    type:GET_ACCOUNTS,payload:res.data
+    type:GET_ACCOUNTS,payload:res.data.accounts
   })
 )
 }

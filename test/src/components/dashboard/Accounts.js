@@ -13,19 +13,13 @@ export class Accounts extends Component {
     render() {
         return (
             <div className="accounts-wrap">
-                {this.state.accounts.map((account)=><AccountCard key={account.id} accountdata={account}/>)}
+                {this.props.accounts.map((account)=><AccountCard key={account.id} accountdata={account}/>)}
                 
             </div>
         );
     }
     componentDidMount=()=>{
-       let url = 'http://localhost:8000/api/accounts/getaccounts'
-       let config = {
-        headers: {'Authorization': "bearer " + localStorage.getItem("token")}
-    };
-        Axios.get(url,config).then(res=>{
-           this.setState({accounts:res.data.accounts})
-        })
+       console.log(this.props)
     }
 }
 

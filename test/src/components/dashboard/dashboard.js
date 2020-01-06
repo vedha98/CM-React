@@ -9,14 +9,18 @@ import Accounts from './Accounts';
 import { toast } from 'react-toastify';
 import { Switch, Route } from 'react-router-dom';
 import Transaction from './Transaction';
+import {connect} from 'react-redux';
+import {getAccounts} from '../../actions/accountActions';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             user:{},
             newaccount:{},
-            showa:false
+            showa:false,
+            accounts:[]
           };
+         
     }
     showAdd=()=>{
         this.setState({
@@ -44,7 +48,7 @@ class dashboard extends React.Component {
                         </Route>
                         <Route path="/dashboard/">
                         <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
-                            <Accounts/>
+                            <Accounts accounts ={this.props.accounts}/>
                         </Route>
                     </Switch>
                     
@@ -55,6 +59,7 @@ class dashboard extends React.Component {
         );
     }
     componentDidMount=()=>{
+        this.props.getAccounts()
         let config = {
             headers: {'Authorization': "bearer " + localStorage.getItem("token")}
         };
@@ -78,5 +83,12 @@ class dashboard extends React.Component {
         )
     }
 }
-
-export default dashboard;
+const mapStateToProps = (state)=>{
+    console.log(state)
+    return{
+        accounts:state.accounts
+      }
+}
+   
+  
+export default connect(mapStateToProps,{getAccounts})(dashboard)
