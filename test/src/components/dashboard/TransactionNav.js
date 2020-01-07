@@ -4,7 +4,7 @@ export class TransactionNav extends Component {
     render() {
         return (
             <div className="transnav-wrap">
-               <div className="transnav-item">
+               <div className="transnav-item active">
                 Send Money
                </div>
                <div className="transnav-item">
