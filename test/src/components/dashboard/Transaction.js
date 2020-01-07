@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios'
+import {connect} from 'react-redux';
+import {getAccounts,loadAccounts} from '../../actions/accountActions';
+import {gettransactions} from '../../actions/transactionActions';
 export class Transaction extends Component {
     constructor(props) {
         super(props);
         this.state={
             clientNo :"",
             Amount:0,
-            account:{}
+            account:{
+                balance:0
+
+            }
 
         }
     }
     handleChange=(value,e)=>{
         this.setState({[value]:e.target.value})
         
+    }
+    handleClick=(e)=>{
+        
+
     }
     
     render() {
@@ -43,10 +53,26 @@ export class Transaction extends Component {
         let account = this.props.accounts.find(item => {
             return item.AccountNo == this.props.match.params.id
          })
-         this.setState({account})
-         console.log(account)
+         if(account)this.setState({account})
+         
+        
+    }
+    componentWillReceiveProps=()=>{
+        let account = this.props.accounts.find(item => {
+            return item.AccountNo == this.props.match.params.id
+         })
+         if(account)this.setState({account})
+         
+        
     }
     
 }
-
-export default withRouter(Transaction);
+const mapStateToProps = (state)=>{
+    return{
+        accounts:state.accountsReducer.accounts,
+        sent:state.transactionReducer.sent,
+        recieved:state.transactionReducer.recieved
+      }
+}
+  
+export default connect(mapStateToProps,{getAccounts,loadAccounts,gettransactions})(withRouter(Transaction))

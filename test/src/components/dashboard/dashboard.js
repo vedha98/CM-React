@@ -11,6 +11,8 @@ import { Switch, Route } from 'react-router-dom';
 import Transaction from './Transaction';
 import {connect} from 'react-redux';
 import {getAccounts,loadAccounts} from '../../actions/accountActions';
+import {gettransactions} from '../../actions/transactionActions';
+import ViewTransactions from './ViewTransactions';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -49,6 +51,7 @@ class dashboard extends React.Component {
                         <Route path="/dashboard/">
                         <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
                             <Accounts accounts ={this.props.accounts}/>
+                            <ViewTransactions sent={this.props.sent} recieved={this.props.recieved}/>
                         </Route>
                     </Switch>
                     
@@ -60,6 +63,7 @@ class dashboard extends React.Component {
     }
     componentDidMount=()=>{
         this.props.loadAccounts()
+        this.props.gettransactions()
         let config = {
             headers: {'Authorization': "bearer " + localStorage.getItem("token")}
         };
@@ -86,9 +90,11 @@ class dashboard extends React.Component {
 const mapStateToProps = (state)=>{
     console.log(state)
     return{
-        accounts:state.accountsReducer.accounts
+        accounts:state.accountsReducer.accounts,
+        sent:state.transactionReducer.sent,
+        recieved:state.transactionReducer.recieved
       }
 }
    
   
-export default connect(mapStateToProps,{getAccounts,loadAccounts})(dashboard)
+export default connect(mapStateToProps,{getAccounts,loadAccounts,gettransactions})(dashboard)

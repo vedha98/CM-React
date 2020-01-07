@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 .side-wrap{
-    min-width: 200px;
+    width: 20%;
     background-color: rgb(14, 46, 59);
     height: 100%;
     display: flex;
@@ -26,7 +26,7 @@
     font-size: 0.7rem;
 }
 .main-dash{
-    width: 100%;
+    width: 80%;
     height: fit-content;
     display: flex;
     position: relative;
@@ -61,14 +61,15 @@
 }
 .accounts-wrap{
     display: flex;
-    flex-wrap: wrap;
-    margin: 1.5rem;
+    margin: 1.5rem 0rem;
+    padding: 1rem;
+    overflow-x: scroll;
 }
 .account-card{
     margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: white;
-    width: 250px;
+    min-width: 200px;
     border-radius: 0.2rem;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     cursor: pointer;
@@ -207,6 +208,7 @@ border-radius: 0.2rem;
     justify-content: left;
     margin: 0px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   
     
 }
 .form-action{
@@ -216,4 +218,58 @@ border-radius: 0.2rem;
 }
 .input-group{
     width: inherit;
+}
+.view-wrap{
+    display: flex;
+    width: 100%;
+    overflow-y: scroll;
+    justify-content: space-between;
+    border-top: 2px grey;
+}
+.rec-wrap{
+    flex: 1;
+    justify-content: center;
+}
+.sent-wrap{
+    flex: 1;
+    justify-content: center;
+    overflow-y: scroll;
+}
+.sent-wrap::-webkit-scrollbar {
+    display: none;
+  }
+.rec-item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(184, 184, 184, 0.116);
+    border-top: 2px grey;
+    padding: 0.5rem 0;
+    
+}
+.rec-item-head{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 900;
+    border-bottom: solid 2px grey;
+    background-color: white;
+    
+}
+.rec-no{
+    padding: 0 1rem;
+    color: grey;
+}
+.rec-amount{
+    color: greenyellow;
+    font-weight: 900;
+}
+.sent-amount{
+    color: red;
+    font-weight: 900;
+}
+.view-head{
+    display: flex;
 }
