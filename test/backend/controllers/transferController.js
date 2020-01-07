@@ -1,6 +1,6 @@
 const transervice = require('../services/database/db_transactions')
 const accservice = require('../services/database/db_accounts')
-
+const excelservice  = require('../services/excelfile')
 
 module.exports={
     transfermoney:async function(data){
@@ -17,5 +17,10 @@ module.exports={
     },
     getAllTransactions:async function(user){
        return await transervice.getall(user.id)
+    },
+    getexcelsheet:async function(user,response){
+          let info = await transervice.getall(user.id)
+           await excelservice.createExcel(info,response)
+           
     }
 }

@@ -2,9 +2,27 @@ import React from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-
+import axios from 'axios';
 
 export class Welcome extends React.Component {
+
+    getexcel=()=>{
+        
+        axios({
+            url: 'http://localhost:8000/api/transfer/getexcel',
+            method: 'GET',
+            responseType: 'blob',
+            headers:  {'Authorization': "bearer " + localStorage.getItem("token")}// important
+          }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Transactions.xlsx');
+            document.body.appendChild(link);
+            link.click();
+          });
+    }
+
     printpdf=()=>{
         var doc = new jsPDF();
         var col = ["s/n ","to No","Sent Amount"];
@@ -37,47 +55,15 @@ export class Welcome extends React.Component {
          doc.autoTable(col1, rows1);
          doc.save('Test.pdf');
     }
-    printpdf1=()=>{
-       
-            const input = document.getElementById("viewtrans");
-            const sent = document.getElementById("sentview")
-            const rechead = document.getElementById("rec-head")
-            const senthead = document.getElementById("sent-head")
-            
-            let pdf = new jsPDF() 
-            html2canvas(rechead,{ width: input.scrollWidth, height: input.scrollHeight })
-              .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                pdf.addImage(imgData, 'png', 50, 0, 100, 80)
-                html2canvas(input,{ width: input.scrollWidth, height: input.scrollHeight })
-              .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                pdf.addImage(imgData, 'png', 50, 10, 100, 60)
-                html2canvas(senthead,{ width: input.scrollWidth, height: input.scrollHeight })
-              .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                pdf.addImage(imgData, 'png', 50, 80, 100, 80)
-                html2canvas(sent,{ width: input.scrollWidth, height: input.scrollHeight })
-              .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                pdf.addImage(imgData, 'png', 50, 90, 100, 60)
-                pdf.save(`transactions.pdf`);
-              });
-                
-              });
-              });
-              });
-            
-              
               
              
             
           
-    }
+    
     render() {
         return (
             <div className="welcome-wrap">
-            Welcome back {this.props.name} ,<div><button className="add-btn" onClick={this.printpdf}>export pdf</button><button className="add-btn" onClick={this.props.showAdd}>add account</button></div>
+            Welcome back {this.props.name} ,<div><button className="add-btn" onClick={this.getexcel}>export excel</button><button className="add-btn" onClick={this.printpdf}>export pdf</button><button className="add-btn" onClick={this.props.showAdd}>add account</button></div>
         </div>
         );
     }

@@ -14,4 +14,7 @@ router.get('/gettransactions',checkToken,(req,res)=>{
         res.json({val})
     })
 })
+router.get('/getexcel',checkToken,(req,res)=>{
+    transferController.getexcelsheet(req.user,res);
+})
 module.exports = router;
