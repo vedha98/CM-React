@@ -3,7 +3,9 @@ import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux';
 import {getAccounts,loadAccounts} from '../../actions/accountActions';
-import {gettransactions} from '../../actions/transactionActions';
+import {gettransactions,sendmoney} from '../../actions/transactionActions';
+import TransactionNav from './TransactionNav';
+
 export class Transaction extends Component {
     constructor(props) {
         super(props);
@@ -22,14 +24,15 @@ export class Transaction extends Component {
         
     }
     handleClick=(e)=>{
-        
 
+        this.props.sendmoney(this.state.account.AccountNo,this.state.clientNo,this.state.Amount)
+        this.props.history.push('/dashboard')
     }
     
     render() {
         return (
             <div>
-                Current Balance : {this.state.account.balance}
+              <TransactionNav closewindow={e=> this.props.history.push('/dashboard')}/>
                 <div className="form">
                     <div className="form-input">
                         <div className="input-group">
@@ -57,12 +60,14 @@ export class Transaction extends Component {
          
         
     }
+    
     componentWillReceiveProps=()=>{
         let account = this.props.accounts.find(item => {
             return item.AccountNo == this.props.match.params.id
          })
          if(account)this.setState({account})
-         
+            
+
         
     }
     
@@ -71,8 +76,9 @@ const mapStateToProps = (state)=>{
     return{
         accounts:state.accountsReducer.accounts,
         sent:state.transactionReducer.sent,
-        recieved:state.transactionReducer.recieved
+        recieved:state.transactionReducer.recieved,
+        redirect:state.transactionReducer.redirect
       }
 }
   
-export default connect(mapStateToProps,{getAccounts,loadAccounts,gettransactions})(withRouter(Transaction))
+export default connect(mapStateToProps,{getAccounts,sendmoney,loadAccounts,gettransactions})(withRouter(Transaction))

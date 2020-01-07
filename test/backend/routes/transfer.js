@@ -5,8 +5,8 @@ const router = express.Router();
 const transferController = require('../controllers/transferController');
 
 router.post('/sendmoney',(req,res)=>{
-transferController.transfermoney(req.body).then(({success,msg})=>{
-    res.json({success,msg})
+transferController.transfermoney(req.body).then(({success,msg,transaction})=>{
+    res.json({success,msg,transaction})
 })
 })
 router.get('/gettransactions',checkToken,(req,res)=>{

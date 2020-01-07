@@ -49,7 +49,7 @@ class dashboard extends React.Component {
                         <Transaction accounts={this.props.accounts} user={this.state.user} />
                         </Route>
                         <Route path="/dashboard/">
-                        <Welcome name={this.state.user.firstname} showAdd={this.showAdd}/>
+                        <Welcome sent={this.props.sent} recieved={this.props.recieved} name={this.state.user.firstname} showAdd={this.showAdd}/>
                             <Accounts accounts ={this.props.accounts}/>
                             <ViewTransactions sent={this.props.sent} recieved={this.props.recieved}/>
                         </Route>

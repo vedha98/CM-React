@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 
 export class ViewTransactions extends Component {
     render() {
-        return (<div>
-            <div className="view-head">
+        return (<div >
+            <div  className="view-head">
             
        
-            <div className="rec-item-head">sent</div> 
-            <div className="rec-item-head">recieved</div> 
+            <div id="rec-head" className="rec-item-head">recieved</div> 
+            <div id="sent-head" className="rec-item-head">sent</div> 
             </div>
             <div className="view-wrap">
-               <div className="rec-wrap">
+               <div id="viewtrans" className="rec-wrap">
                   
-                {this.props.sent.map((val,i)=>
+                {this.props.recieved.map((val,i)=>
                 <div key={i} className="rec-item">
                     <div className="rec-no">
-                    {val.tono}
+                    {val.fromno}
                     </div>
                     <div className="rec-amount">
                     +{val.amount}
@@ -23,9 +23,9 @@ export class ViewTransactions extends Component {
                 </div>
                 )}
                </div>
-               <div className="sent-wrap">
+               <div id="sentview" className="sent-wrap">
                
-               {this.props.recieved.map((val,i)=>
+               {this.props.sent.map((val,i)=>
                 <div key={i} className="rec-item">
                     <div className="rec-no">
                     {val.tono}
