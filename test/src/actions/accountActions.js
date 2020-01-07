@@ -1,9 +1,9 @@
-import {GET_ACCOUNTS,ADD_ACCOUNT} from '../actions/types';
+import {GET_ACCOUNTS,ADD_ACCOUNT, LOAD_ACCOUNTS} from '../actions/types';
 import {toast} from 'react-toastify'
 import axios from 'axios';
 
-
-export const getAccounts = ()=> dispatch =>{
+toast.configure({position: toast.POSITION.BOTTOM_RIGHT})
+export const loadAccounts = ()=> dispatch =>{
   console.log('get called');
   let url = 'http://localhost:8000/api/accounts/getaccounts'
        let config = {
@@ -11,10 +11,17 @@ export const getAccounts = ()=> dispatch =>{
     };
         axios.get(url,config).then(res=>
   dispatch({
-    type:GET_ACCOUNTS,payload:res.data.accounts
+    type:LOAD_ACCOUNTS,payload:res.data.accounts
   })
 )
 }
+export const getAccounts = ()=> dispatch =>{
+   
+    dispatch({
+      type:GET_ACCOUNTS,payload:null
+    })
+  
+  }
 export const addAccount = (accountNo,isPrimary)=> dispatch =>{
     console.log('get called');
     let config = {
@@ -25,14 +32,14 @@ export const addAccount = (accountNo,isPrimary)=> dispatch =>{
             isPrimary
         },config).then(res=>{
             if(res.data.success){
-                toast.success("MY SUCCESS");
+                toast.success("account added successfully",{position: toast.POSITION.BOTTOM_RIGHT});
                 dispatch({
                     type:ADD_ACCOUNT,
                     payload:res.data.accounts   
                 })
                
             }else{
-               
+               toast.error(res.data.msg,{position: toast.POSITION.BOTTOM_RIGHT})
             }
             
         }

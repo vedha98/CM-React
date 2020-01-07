@@ -38,5 +38,11 @@ module.exports = {
     getAccounts: async function (userid) {
         const userId = String(userid);
         return await accountsdb.findAll({where:{userId}})
+    },
+    getUser:async function (AccountNo){
+        return await accountsdb.findOne({ where: { AccountNo } }).then(account => {
+            return account.userId
+        })
     }
+    
 }

@@ -14,6 +14,12 @@ module.exports = {
       toid: {
         type: Sequelize.STRING
       },
+      fromno: {
+        type: Sequelize.STRING
+      },
+      tono: {
+        type: Sequelize.STRING
+      },
       amount: {
         type: Sequelize.INTEGER
       },

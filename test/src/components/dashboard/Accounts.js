@@ -19,7 +19,6 @@ export class Accounts extends Component {
         );
     }
     componentDidMount=()=>{
-       console.log(this.props)
     }
 }
 

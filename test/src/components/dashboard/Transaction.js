@@ -6,22 +6,20 @@ export class Transaction extends Component {
         super(props);
         this.state={
             clientNo :"",
-            Amount:0
+            Amount:0,
+            account:{}
 
         }
     }
     handleChange=(value,e)=>{
         this.setState({[value]:e.target.value})
-        let account = this.state.accounts.find(item => {
-            return item.AccountNo == this.props.id
-         })
-         console.log(this.props)
+        
     }
     
     render() {
         return (
             <div>
-                Current Balance : 
+                Current Balance : {this.state.account.balance}
                 <div className="form">
                     <div className="form-input">
                         <div className="input-group">
@@ -41,15 +39,13 @@ export class Transaction extends Component {
             </div>
         );
     }
-    componentDidMount(){
-        let url = 'http://localhost:8000/api/accounts/getaccounts'
-        let config = {
-         headers: {'Authorization': "bearer " + localStorage.getItem("token")}
-     };
-         axios.get(url,config).then(res=>{
-            this.setState({accounts:res.data.accounts})
+    componentDidMount=()=>{
+        let account = this.props.accounts.find(item => {
+            return item.AccountNo == this.props.match.params.id
          })
-     }
+         this.setState({account})
+         console.log(account)
+    }
     
 }
 

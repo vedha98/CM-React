@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TopNav from './TopNav';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {getAccounts,addAccount} from '../../actions/accountActions';
 export class AddAccount extends Component {
@@ -18,6 +17,7 @@ export class AddAccount extends Component {
     }
     handleClick = (e) => {
         this.props.addAccount(this.state.accountNo,this.state.isPrimary)
+        this.props.hideAdd()
     }
     handleCheck=(e)=>{
         this.setState({
@@ -69,4 +69,4 @@ const mapStateToProps = (state)=>{
 }
    
   
-export default connect(mapStateToProps,{getAccounts,addAccount})(AddAccount)
+export default connect(mapStateToProps,{getAccounts,addAccount})((AddAccount))

@@ -21,7 +21,7 @@ db.authenticate().then(console.log("true")).catch(err=>{console.log(err)});
 app.use('/api/users',require('./routes/users'))
 app.use('/api/accounts',require('./routes/accounts'))
 app.use('/api/admin',require('./routes/admin'))
-
+app.use('/api/transfer',require('./routes/transfer'))
 //server port
 const PORT = process.env.PORT||8000;
 
