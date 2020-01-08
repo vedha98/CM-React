@@ -1,4 +1,4 @@
-import { GET_TRANSACTIONS, SEND_MONEY } from '../actions/types';
+import { GET_TRANSACTIONS, SEND_MONEY, ADD_MONEY } from '../actions/types';
 import {toast} from 'react-toastify'
 import axios from 'axios';
 
@@ -32,5 +32,24 @@ export const sendmoney = (fromno,tono,amount)=> dispatch =>{
             }
    
 }
+  )
+  }
+  export const addmoney = (accno,amount)=> dispatch =>{
+    console.log('get called');
+    let url = 'http://localhost:8000/api/transfer/addmoney'
+         let config = {
+          headers: {'Authorization': "bearer " + localStorage.getItem("token")}
+      };
+          axios.post(url,{accno,amount},config).then(res=>{
+            if(res.data.success){
+                toast.success(res.data.msg,{position: toast.POSITION.BOTTOM_RIGHT});
+                dispatch({
+                    type:ADD_MONEY,payload:{accno,amount}
+                  })
+            }else{
+                toast.error(res.data.msg,{position: toast.POSITION.BOTTOM_RIGHT});
+            }
+        }
+    
   )
   }

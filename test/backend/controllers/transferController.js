@@ -8,7 +8,7 @@ module.exports={
         let toexist = await accservice.checkAccountExists(data.tono)
         if(fromexist || toexist) return ({msg:"account does not exist",success:false});
 
-       let fromid =  await accservice.getUser(data.fromno);
+        let fromid =  await accservice.getUser(data.fromno);
         let toid = await accservice.getUser(data.tono);
         
         return await transervice.transfermoney(data.fromno,data.tono,fromid,toid,data.amount).then(transaction=>{
@@ -22,5 +22,11 @@ module.exports={
           let info = await transervice.getall(user.id)
            await excelservice.createExcel(info,response)
            
+    },
+    addmoney:async function(user,accno,amount){
+        let existance = await accservice.userHasAccount(accno,user.id)
+        if(!existance)return({success:false,msg:"account does not belong to the user"})
+        await transervice.addmoney(accno,amount)
+        return({success:true,msg:"money added successfully"})
     }
 }

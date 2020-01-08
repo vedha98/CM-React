@@ -13,6 +13,8 @@ import {connect} from 'react-redux';
 import {getAccounts,loadAccounts} from '../../actions/accountActions';
 import {gettransactions} from '../../actions/transactionActions';
 import ViewTransactions from './ViewTransactions';
+import AccountActions from './AccountActions';
+import TransactionSearch from './TransactionSearch';
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -43,14 +45,14 @@ class dashboard extends React.Component {
                 
                 <div className="main-dash">
                 {this.state.showa?<AddAccount hideAdd={this.hideAdd}/>:null}
-                    <TopNav/>
                     <Switch>    
                         <Route path="/dashboard/account/:id">
-                        <Transaction accounts={this.props.accounts} user={this.state.user} />
+                        <AccountActions accounts={this.props.accounts} user={this.state.user} />
                         </Route>
                         <Route path="/dashboard/">
                         <Welcome sent={this.props.sent} recieved={this.props.recieved} name={this.state.user.firstname} showAdd={this.showAdd}/>
                             <Accounts accounts ={this.props.accounts}/>
+                            <TransactionSearch/>
                             <ViewTransactions sent={this.props.sent} recieved={this.props.recieved}/>
                         </Route>
                     </Switch>

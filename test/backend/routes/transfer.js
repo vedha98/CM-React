@@ -9,8 +9,10 @@ transferController.transfermoney(req.body).then(({success,msg,transaction})=>{
     res.json({success,msg,transaction})
 })
 })
-router.post('/addmoney',(req,res)=>{
-    
+router.post('/addmoney',checkToken,(req,res)=>{
+    transferController.addmoney(req.user,req.body.accno,req.body.amount).then(({msg,success})=>{
+        res.json({msg,success})
+    })
 })
 router.get('/gettransactions',checkToken,(req,res)=>{
     transferController.getAllTransactions(req.user).then(val=>{

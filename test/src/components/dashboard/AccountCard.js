@@ -16,7 +16,7 @@ export class AccountCard extends Component {
             </div>
             <div className="account-item">
                 <div className="account-balance">
-                    {this.props.accountdata.balance}
+                    ${this.props.accountdata.balance}
                 </div>
                  </div>
                  <div className="account-item">

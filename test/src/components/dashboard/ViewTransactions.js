@@ -4,10 +4,8 @@ export class ViewTransactions extends Component {
     render() {
         return (<div >
             <div  className="view-head">
-            
-       
-            <div id="rec-head" className="rec-item-head">recieved</div> 
-            <div id="sent-head" className="rec-item-head">sent</div> 
+            <div id="rec-head" className="rec-item-head">transactions from</div> 
+            <div id="sent-head" className="rec-item-head">transactions to</div> 
             </div>
             <div className="view-wrap">
                <div id="viewtrans" className="rec-wrap">

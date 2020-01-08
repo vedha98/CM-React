@@ -43,6 +43,21 @@ module.exports = {
         return await accountsdb.findOne({ where: { AccountNo } }).then(account => {
             return account.userId
         })
+    },
+    userHasAccount:async function(AccountNo,userId){
+       AccountNo =  String(AccountNo)
+       return await accountsdb.findOne({where:{AccountNo}}).then(account=>{
+        if(account){
+            if(account.userId==userId){
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+       });
+      
     }
     
 }
