@@ -6,6 +6,7 @@ let initialState={
     fsent:[],
     frecieved:[],
     passbook:[],
+    currentpage:0,
     redirect:false
 }
 
@@ -14,10 +15,11 @@ export default (state = initialState, action) => {
         case GET_TRANSACTIONS:
             console.log(action)
             return{...state,
-                sent:action.payload.val.sent,
-                recieved:action.payload.val.recieved,
-                fsent:action.payload.val.sent,
-                frecieved:action.payload.val.recieved
+                sent:[...state.sent,...action.payload.val.sent],
+                recieved:[...state.recieved,...action.payload.val.recieved],
+                fsent:[...state.sent,...action.payload.val.sent],
+                frecieved:[...state.recieved,...action.payload.val.recieved],
+                currentpage:action.pageno
             }
         case SEND_MONEY:
             console.log(action)

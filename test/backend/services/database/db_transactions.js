@@ -7,9 +7,9 @@ module.exports={
     },
     getall:async function(userId,page){
         userId = String(userId)
-        offset = parseInt(page)*5
-        let sent = await transferdb.findAll({offset,limit:5,where:{fromid:userId}})
-        let recieved = await transferdb.findAll({offset,limit:5,where:{toid:userId}})
+        offset = parseInt(page)*10
+        let sent = await transferdb.findAll({offset,limit:10,where:{fromid:userId}})
+        let recieved = await transferdb.findAll({offset,limit:10,where:{toid:userId}})
         return ({sent,recieved})
     },
     addmoney:async function(accno,amount){

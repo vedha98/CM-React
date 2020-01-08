@@ -338,3 +338,7 @@ cursor: pointer;
     flex-direction: row-reverse;
     margin: 0.3rem;
 }
+#viewtrans{
+    display: flex;
+    height: max-content;
+}

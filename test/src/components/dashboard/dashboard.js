@@ -53,7 +53,7 @@ class dashboard extends React.Component {
                         <Welcome sent={this.props.sent} recieved={this.props.recieved} name={this.state.user.firstname} showAdd={this.showAdd}/>
                             <Accounts accounts ={this.props.accounts}/>
                             <TransactionSearch/>
-                            <ViewTransactions sent={this.props.sent} recieved={this.props.recieved}/>
+                            <ViewTransactions gettransactions={this.props.gettransactions} currentpage={this.props.currentpage} sent={this.props.sent} recieved={this.props.recieved}/>
                         </Route>
                     </Switch>
                     
@@ -90,10 +90,12 @@ class dashboard extends React.Component {
     }
 }
 const mapStateToProps = (state)=>{
+    console.log(state)
     return{
         accounts:state.accountsReducer.accounts,
         sent:state.transactionReducer.fsent,
-        recieved:state.transactionReducer.frecieved
+        recieved:state.transactionReducer.frecieved,
+        currentpage:state.transactionReducer.currentpage
       }
 }
    
