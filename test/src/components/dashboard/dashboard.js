@@ -90,11 +90,10 @@ class dashboard extends React.Component {
     }
 }
 const mapStateToProps = (state)=>{
-    console.log(state)
     return{
         accounts:state.accountsReducer.accounts,
-        sent:state.transactionReducer.sent,
-        recieved:state.transactionReducer.recieved
+        sent:state.transactionReducer.fsent,
+        recieved:state.transactionReducer.frecieved
       }
 }
    

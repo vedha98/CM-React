@@ -13,6 +13,9 @@ export class ViewTransactions extends Component {
                 {this.props.recieved.map((val,i)=>
                 <div key={i} className="rec-item">
                     <div className="rec-no">
+                    {val.id}
+                    </div>
+                    <div className="rec-no">
                     {val.fromno}
                     </div>
                     <div className="rec-amount">
@@ -25,6 +28,9 @@ export class ViewTransactions extends Component {
                
                {this.props.sent.map((val,i)=>
                 <div key={i} className="rec-item">
+                    <div className="rec-no">
+                    {val.id}
+                    </div>
                     <div className="rec-no">
                     {val.tono}
                     </div>

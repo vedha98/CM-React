@@ -69,11 +69,6 @@
     height: 0px;
 	background-color: #F5F5F5;
 }
-.accounts-wrap::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
-}
 .account-card{
     margin: 0.5rem 1rem;
     padding: 0.5rem 1rem;
@@ -315,4 +310,10 @@ background-color: #f9f9fc;
 color: rgb(7, 23, 31)!important;
 cursor: pointer;
 
+}
+.transaction-search{
+    max-width: 50%;
+}
+.search-wrap{
+    margin: 1rem;
 }
