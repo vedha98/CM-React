@@ -16,7 +16,7 @@ export class TransactionSearch extends Component {
     render() {
         return (
             <div className="search-wrap">
-                <input val={this.state.val} onChange={this.handleChange} placeholder="Search transactions" className="transaction-search"></input>
+                <input className="search-input" val={this.state.val} onChange={this.handleChange} placeholder="Search transactions" className="transaction-search"></input>
             </div>
         );
     }

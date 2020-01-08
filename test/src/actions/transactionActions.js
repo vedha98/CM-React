@@ -1,4 +1,4 @@
-import { GET_TRANSACTIONS, SEND_MONEY, ADD_MONEY, FILTER_TRANSACTIONS } from '../actions/types';
+import { GET_TRANSACTIONS, SEND_MONEY, ADD_MONEY, FILTER_TRANSACTIONS,GET_PASSBOOK } from '../actions/types';
 import {toast} from 'react-toastify'
 import axios from 'axios';
 
@@ -56,3 +56,6 @@ export const sendmoney = (fromno,tono,amount)=> dispatch =>{
   export const filtertransactions=(filter)=>dispatch=>{
       dispatch({type:FILTER_TRANSACTIONS,payload:filter})
   }
+  export const getPassbook=(accno)=>dispatch=>{
+    dispatch({type:GET_PASSBOOK,payload:accno})
+}

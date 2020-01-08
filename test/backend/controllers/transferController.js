@@ -15,8 +15,11 @@ module.exports={
             return {msg:"money transferred successfully",success:true,transaction}
         })
     },
-    getAllTransactions:async function(user){
-       return await transervice.getall(user.id)
+    getAllTransactions:async function(user,reqpage){
+        let page = 0;
+        if(reqpage)page=reqpage
+       return await transervice.getall(user.id,page)
+
     },
     getexcelsheet:async function(user,response){
           let info = await transervice.getall(user.id)

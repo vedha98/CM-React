@@ -15,7 +15,7 @@ router.post('/addmoney',checkToken,(req,res)=>{
     })
 })
 router.get('/gettransactions',checkToken,(req,res)=>{
-    transferController.getAllTransactions(req.user).then(val=>{
+    transferController.getAllTransactions(req.user,req.query.page).then(val=>{
         res.json({val})
     })
 })

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export class TransactionNav extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+        }
+    }
     render() {
         return (
             <div className="transnav-wrap">
@@ -10,7 +15,7 @@ export class TransactionNav extends Component {
                <div onClick={e=>this.props.setstep(1)} className={this.props.stage===1?"transnav-item active":"transnav-item"}>
                 Add Money
                </div>
-               <div className="transnav-item">
+               <div onClick={e=>this.props.setstep(2)} className={this.props.stage===2?"transnav-item active":"transnav-item"}>
                 Passbook
                </div>
                <div onClick={this.props.closewindow} className="transnav-item close">

@@ -26,7 +26,7 @@ export class AddMoney extends Component {
                         </div>
                     </div>
                     <div className="form-action">
-                        <button className="step-button" onClick={this.handleClick}>Send Money</button>
+                        <button className="step-button" onClick={this.handleClick}>Add Money</button>
 
                     </div>
                 </div>

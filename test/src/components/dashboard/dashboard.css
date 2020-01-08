@@ -317,3 +317,24 @@ cursor: pointer;
 .search-wrap{
     margin: 1rem;
 }
+.passbook-wrap{
+    width: 100%;
+}
+.passbook-item{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.2rem;
+}
+.passbook-item>.rec-no{
+    width: 25%;
+}
+.head{
+    margin: 2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+.btn-wrap{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0.3rem;
+}

@@ -5,10 +5,11 @@ module.exports={
     transfermoney:async function(fromno,tono,fromid,toid,amount){
         return await transferdb.create({fromno,tono,fromid,toid,amount})
     },
-    getall:async function(userId){
+    getall:async function(userId,page){
         userId = String(userId)
-        let sent = await transferdb.findAll({where:{fromid:userId}})
-        let recieved = await transferdb.findAll({where:{toid:userId}})
+        offset = parseInt(page)*5
+        let sent = await transferdb.findAll({offset,limit:5,where:{fromid:userId}})
+        let recieved = await transferdb.findAll({offset,limit:5,where:{toid:userId}})
         return ({sent,recieved})
     },
     addmoney:async function(accno,amount){

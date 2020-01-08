@@ -5,13 +5,16 @@ import {withRouter} from 'react-router-dom'
 import AddMoney from './AddMoney';
 import {connect} from 'react-redux';
 import {getAccounts,loadAccounts} from '../../actions/accountActions';
-import {gettransactions,sendmoney,addmoney} from '../../actions/transactionActions';
+import {gettransactions,sendmoney,addmoney,getPassbook} from '../../actions/transactionActions';
+import Passbook from './Passbook';
+import TopNav from './TopNav';
 
 export class AccountActions extends Component {
     constructor(props) {
         super(props);
         this.state={
-            stage:0
+            stage:0,
+            
         }
 
     }
@@ -26,11 +29,12 @@ export class AccountActions extends Component {
     setstep=(step)=>{
         this.setState({stage:step})
     }
+
     
     render() {
         return (
-            <div>  
-                 <TransactionNav stage={this.state.stage} setstep={this.setstep} closewindow={e=> this.props.history.push('/dashboard')}/>
+            <div> 
+                 <TransactionNav accounts={this.props.accounts} stage={this.state.stage} setstep={this.setstep} closewindow={e=> this.props.history.push('/dashboard')}/>
 
                
                 {{
@@ -39,6 +43,9 @@ export class AccountActions extends Component {
                     ),
                     1: (
                         <AddMoney accno={this.props.match.params.id} addmoney={this.props.addmoney}/>
+                    ),
+                    2: (
+                        <Passbook passbook={this.props.passbook} getPassbook={this.props.getPassbook} accno={this.props.match.params.id}/>
                     ),
                     
 
@@ -56,8 +63,9 @@ const mapStateToProps = (state)=>{
         accounts:state.accountsReducer.accounts,
         sent:state.transactionReducer.sent,
         recieved:state.transactionReducer.recieved,
-        redirect:state.transactionReducer.redirect
+        redirect:state.transactionReducer.redirect,
+        passbook:state.transactionReducer.passbook
       }
 }
   
-export default connect(mapStateToProps,{getAccounts,sendmoney,addmoney,loadAccounts,gettransactions})(withRouter(AccountActions))
+export default connect(mapStateToProps,{getAccounts,sendmoney,addmoney,loadAccounts,gettransactions,getPassbook})(withRouter(AccountActions))
