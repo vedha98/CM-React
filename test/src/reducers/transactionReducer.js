@@ -22,11 +22,11 @@ export default (state = initialState, action) => {
             console.log(action)
             if(action.payload.toid==action.payload.fromid){
                 return{
-                    ...state,redirect:true,sent:[...state.sent,action.payload],recieved:[...state.recieved,action.payload]
+                    ...state,redirect:true,sent:[...state.sent,action.payload],recieved:[...state.recieved,action.payload],fsent:[...state.sent,action.payload],frecieved:[...state.recieved,action.payload]
                 } 
             }else{
                 return{
-                    ...state,redirect:true,sent:[...state.sent,action.payload]
+                    ...state,redirect:true,sent:[...state.sent,action.payload],fsent:[...state.sent,action.payload],frecieved:[...state.recieved]
                 } 
             }
         case FILTER_TRANSACTIONS:
@@ -34,9 +34,10 @@ export default (state = initialState, action) => {
             let frecieved = state.recieved;
             if(action.payload!=""){
                 fsent = fsent.filter((val)=>{
-                    return val.id===parseInt(action.payload)})
+                    // return val.id===parseInt(action.payload)})
+                    return String(val.id).indexOf(String(action.payload))>-1 || String(val.tono).indexOf(String(action.payload))>-1})
                 frecieved = frecieved.filter((val)=>{
-                    return String(val.id).indexOf(String(action.payload))>-1})
+                    return String(val.id).indexOf(String(action.payload))>-1 || String(val.fromno).indexOf(String(action.payload))>-1})
                        
             } 
             return{...state,fsent,frecieved}    
